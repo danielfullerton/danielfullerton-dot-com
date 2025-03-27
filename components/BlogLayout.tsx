@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Seo from "./Seo";
 
 type BlogMetadata = {
   title: string;
@@ -15,9 +15,7 @@ type BlogLayoutProps = {
 export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
   return (
     <>
-      <Head>
-        <title>{metadata.title}</title>
-      </Head>
+      <Seo title={metadata.title} description={metadata.description} />
       <article className="max-w-2xl mx-auto px-4 py-8">
         <header className="mb-8">
           <h1 className="text-4xl font-bold mb-2">{metadata.title}</h1>

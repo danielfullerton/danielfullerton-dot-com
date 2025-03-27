@@ -1,18 +1,16 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import Seo from "../components/Seo";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <Head>
-        <title>Daniel Fullerton - Software Engineer</title>
-        <meta
-          name="description"
-          content="Software Engineer specializing in data engineering and cloud architecture"
-        />
-      </Head>
+      <Seo
+        title="Software Engineer"
+        description="Software Engineer specializing in data engineering and cloud architecture. Currently working at Microsoft on scalable solutions using Scala, Spark Streaming, and Azure technologies."
+        openGraphImage="/profile.jpeg"
+      />
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
