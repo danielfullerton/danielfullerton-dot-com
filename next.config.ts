@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
   pageExtensions: ["ts", "tsx", "js", "jsx"],
   webpack: (config) => {
     config.module.rules.push({
@@ -8,6 +9,9 @@ const nextConfig: NextConfig = {
       use: "raw-loader",
     });
     return config;
+  },
+  images: {
+    unoptimized: true,
   },
 };
 

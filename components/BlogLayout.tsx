@@ -1,3 +1,4 @@
+import Navbar from "./Navbar";
 import Seo from "./Seo";
 
 type BlogMetadata = {
@@ -16,6 +17,7 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
   return (
     <>
       <Seo title={metadata.title} description={metadata.description} />
+      <Navbar />
       <article className="max-w-2xl mx-auto px-4 py-8">
         <header className="mb-8">
           <h1 className="text-4xl font-bold mb-2">{metadata.title}</h1>

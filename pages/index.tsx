@@ -23,7 +23,7 @@ export default function Home() {
               <h2 className="text-2xl text-gray-600 mb-6">Software Engineer</h2>
               <div className="prose max-w-none text-gray-600 mb-6">
                 <p className="mb-4">
-                  I'm a software engineer at Microsoft specializing in data
+                  I&apos;m a software engineer at Microsoft specializing in data
                   engineering and cloud architecture. Currently, I work on the
                   Commerce team where I develop scalable solutions for customer
                   invoice aggregation using Scala, Spark Streaming, and Azure
@@ -35,10 +35,10 @@ export default function Home() {
                   T-Mobile using Java Spring microservices and Angular, and
                   developing talent management platforms at Randstad using
                   TypeScript, Node.js, and Google Cloud Platform. With a
-                  Bachelor's in Computer Science, I bring a solid foundation in
-                  software engineering principles and a track record of
-                  delivering impactful solutions across different technology
-                  stacks.
+                  Bachelor&apos;s in Computer Science, I bring a solid
+                  foundation in software engineering principles and a track
+                  record of delivering impactful solutions across different
+                  technology stacks.
                 </p>
               </div>
             </div>
@@ -59,28 +59,136 @@ export default function Home() {
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
               Technologies & Skills
             </h3>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Scala",
-                "Spark",
-                "Azure",
-                "Java",
-                "Spring",
-                "TypeScript",
-                "Node.js",
-                "Angular",
-                "MongoDB",
-                "Elasticsearch",
-                "GCP",
-                "AI/ML",
-              ].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">
+                  Languages
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Scala",
+                    "Java",
+                    "C#",
+                    "Go",
+                    "JavaScript",
+                    "TypeScript",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">
+                  Frameworks & Libraries
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Spring Framework",
+                    ".NET",
+                    "NestJS",
+                    "Next.js",
+                    "Angular",
+                    "React",
+                    "React Native",
+                    "GraphQL (Hot Chocolate)",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">
+                  Big Data & Streaming
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Apache Spark",
+                    "Spark Streaming",
+                    "Azure Synapse Analytics",
+                    "Azure HDInsight",
+                    "Azure Data Factory",
+                    "Databricks",
+                    "Google BigQuery",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">
+                  Cloud Platforms
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Microsoft Azure",
+                    "Amazon Web Services (AWS)",
+                    "Google Cloud Platform (GCP)",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">
+                  Cloud Services (Azure)
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Azure App Service",
+                    "Azure SQL Database",
+                    "Azure Storage",
+                    "Azure Event Hubs",
+                    "Microsoft Entra ID",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">
+                  Databases & Search
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "MongoDB",
+                    "Elasticsearch",
+                    "Azure SQL Database",
+                    "Google BigQuery",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
