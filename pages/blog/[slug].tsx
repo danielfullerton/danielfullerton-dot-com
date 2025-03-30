@@ -54,7 +54,6 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
 
   const { data: metadata, content: markdownContent } = matter(fileContents);
   const content = await markdownToHtml(markdownContent);
-  console.log(content);
 
   return {
     props: {

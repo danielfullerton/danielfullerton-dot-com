@@ -19,7 +19,7 @@ export default function Navbar() {
                 alt="DF Logo"
                 width={40}
                 height={40}
-                className="w-auto h-8"
+                className="w-auto h-8 rounded"
               />
             </Link>
           </div>
@@ -112,12 +112,6 @@ export default function Navbar() {
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-gray-600 hover:bg-gray-50 transition-all duration-200"
             >
               Blog
-            </Link>
-            <Link
-              href="/about"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-gray-600 hover:bg-gray-50 transition-all duration-200"
-            >
-              About
             </Link>
           </div>
         </div>
