@@ -62,9 +62,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                   className="block hover:text-blue-600 transition-colors"
                 >
                   <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
-                  <time className="text-gray-600 mb-2 block">
-                    {new Date(post.date).toLocaleDateString()}
-                  </time>
+                  <time className="text-gray-600 mb-2 block">{post.date}</time>
                   {post.description && (
                     <p className="text-gray-600">{post.description}</p>
                   )}
