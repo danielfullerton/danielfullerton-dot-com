@@ -4,6 +4,7 @@ date: "2025-03-30"
 description: "A look back on a transformative year—from welcoming our daughter Tiffany to starting a new role at Microsoft, completing a major home renovation, and diving deeper into AI and theology. This post reflects on the blessings and challenges of 2024 and what I’m looking forward to in the rest of 2025."
 author: "Daniel Fullerton"
 image: "/2024-retro.png"
+coverImage: "/valley.jpg"
 ---
 
 ## 📈 What’s New at Work: Growth Through Change

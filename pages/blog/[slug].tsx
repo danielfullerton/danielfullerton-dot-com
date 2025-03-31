@@ -65,6 +65,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
         description: metadata.description || "",
         author: metadata.author || "Anonymous",
         image: metadata.image,
+        coverImage: metadata.coverImage,
       },
     },
   };
