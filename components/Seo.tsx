@@ -31,6 +31,7 @@ export default function Seo({
     ? getAbsoluteUrl(canonicalUrl)
     : undefined;
 
+  console.log(absoluteOgImage);
   return (
     <Head>
       <title>{fullTitle}</title>

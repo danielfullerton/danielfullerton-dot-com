@@ -6,6 +6,7 @@ type BlogMetadata = {
   date: string;
   description: string;
   author: string;
+  image?: string;
 };
 
 type BlogLayoutProps = {
@@ -16,7 +17,11 @@ type BlogLayoutProps = {
 export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
   return (
     <>
-      <Seo title={metadata.title} description={metadata.description} />
+      <Seo
+        title={metadata.title}
+        description={metadata.description}
+        openGraphImage={metadata.image}
+      />
       <Navbar />
       <article className="max-w-2xl mx-auto px-4 py-8">
         <header className="mb-8">

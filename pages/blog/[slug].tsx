@@ -15,6 +15,7 @@ type BlogPostProps = {
     date: string;
     description: string;
     author: string;
+    image?: string;
   };
 };
 
@@ -63,6 +64,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async ({
         date: metadata.date || new Date().toISOString(),
         description: metadata.description || "",
         author: metadata.author || "Anonymous",
+        image: metadata.image,
       },
     },
   };
