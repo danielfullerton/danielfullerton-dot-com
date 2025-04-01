@@ -1,11 +1,43 @@
 ---
+# Core Metadata
 title: "2023 Retrospective"
 date: "2024-03-26"
-description: "A look back at major life changes in 2022-2023, including joining Microsoft, expanding our family with a new dog and baby, starting a woodworking YouTube channel, and looking forward to what's ahead in 2024."
+lastModified: "2025-03-31"
 author: "Daniel Fullerton"
+language: "en"
+status: "published"
+
+# SEO & Social
+description: "A look back at major life changes in 2022-2023, including joining Microsoft, expanding our family with a new dog and baby, starting a woodworking YouTube channel, and looking forward to what's ahead in 2024."
+excerpt: "Major life updates from 2022-2023: joining Microsoft, welcoming a new dog and baby, launching a woodworking channel, and planning for 2024."
+keywords:
+  [
+    "2023 retrospective",
+    "Microsoft career",
+    "family life",
+    "woodworking",
+    "YouTube channel",
+    "personal growth",
+    "software engineering",
+  ]
+canonicalUrl: "/blog/2023-retrospective"
+noindex: false
+nofollow: false
+
+# Visual Assets
 image: "/df.png"
 coverImage: null
+openGraphImage: "/df.png"
+
+# Content Organization
+category: "Year in Review"
 tags: ["career", "family", "woodworking", "home-improvement", "personal"]
+series: "Annual Retrospectives"
+featured: false
+timeToRead: "12 minutes"
+
+# Enhanced Navigation
+tableOfContents: true
 ---
 
 Alright, it's been a while since I wrote my last article here - but that should tell you just how busy I've been! The latter half of 2022 and all of 2023

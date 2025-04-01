@@ -3,13 +3,36 @@ import Navbar from "./Navbar";
 import Seo from "./Seo";
 
 type BlogMetadata = {
+  // Core Metadata
   title: string;
   date: string;
-  description: string;
+  lastModified?: string;
   author: string;
+  language?: string;
+  status?: "draft" | "published";
+
+  // SEO & Social
+  description: string;
+  excerpt?: string;
+  keywords?: string[];
+  canonicalUrl?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+
+  // Visual Assets
   image?: string;
   coverImage?: string;
+  openGraphImage?: string;
+
+  // Content Organization
+  category?: string;
   tags?: string[];
+  series?: string;
+  featured?: boolean;
+  timeToRead?: string;
+
+  // Enhanced Navigation
+  tableOfContents?: boolean;
 };
 
 type BlogLayoutProps = {
@@ -39,7 +62,17 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
       <Seo
         title={metadata.title}
         description={metadata.description}
-        openGraphImage={metadata.image}
+        excerpt={metadata.excerpt}
+        keywords={metadata.keywords}
+        openGraphImage={metadata.openGraphImage || metadata.image}
+        canonicalUrl={metadata.canonicalUrl}
+        noindex={metadata.noindex}
+        nofollow={metadata.nofollow}
+        language={metadata.language}
+        author={metadata.author}
+        datePublished={metadata.date}
+        dateModified={metadata.lastModified}
+        type="article"
       />
       <Navbar />
       {metadata.coverImage && (
@@ -64,22 +97,47 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
           }`}
         >
           <h1 className="text-4xl font-bold mb-2">{metadata.title}</h1>
-          <div className="text-gray-600 mb-2">
-            <time>{metadata.date}</time> • {metadata.author}
+          <div className="text-gray-600 mb-2 flex items-center gap-2 flex-wrap">
+            <time>{metadata.date}</time>
+            <span>•</span>
+            <span>{metadata.author}</span>
+            {metadata.timeToRead && (
+              <>
+                <span>•</span>
+                <span>{metadata.timeToRead} to read</span>
+              </>
+            )}
+            {metadata.category && (
+              <>
+                <span>•</span>
+                <span className="text-blue-600">{metadata.category}</span>
+              </>
+            )}
           </div>
-          {metadata.tags && metadata.tags.length > 0 && (
-            <div className="flex gap-2 mb-3">
-              {metadata.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-sm"
-                >
-                  {tag}
-                </span>
-              ))}
+          {metadata.series && (
+            <div className="text-gray-600 mb-2">
+              Series: <span className="text-blue-600">{metadata.series}</span>
             </div>
           )}
+          <div className="flex flex-wrap gap-2 mb-3">
+            {metadata.tags?.map((tag) => (
+              <span
+                key={tag}
+                className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-sm"
+              >
+                {tag}
+              </span>
+            ))}
+            {metadata.featured && (
+              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-sm">
+                Featured
+              </span>
+            )}
+          </div>
           <p className="text-xl text-gray-600">{metadata.description}</p>
+          {metadata.excerpt && (
+            <p className="text-gray-500 mt-2">{metadata.excerpt}</p>
+          )}
         </header>
         <div className="prose lg:prose-xl">{children}</div>
       </article>

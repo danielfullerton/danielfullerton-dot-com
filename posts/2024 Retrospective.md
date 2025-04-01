@@ -1,11 +1,45 @@
 ---
+# Core Metadata
 title: "2024 Retrospective"
 date: "2025-03-30"
-description: "A look back on a transformative year—from welcoming our daughter Tiffany to starting a new role at Microsoft, completing a major home renovation, and diving deeper into AI and theology. This post reflects on the blessings and challenges of 2024 and what I'm looking forward to in the rest of 2025."
+lastModified: "2025-03-31"
 author: "Daniel Fullerton"
+language: "en"
+status: "published"
+
+# SEO & Social
+description: "A look back on a transformative year—from welcoming our daughter Tiffany to starting a new role at Microsoft, completing a major home renovation, and diving deeper into AI and theology. This post reflects on the blessings and challenges of 2024 and what I'm looking forward to in the rest of 2025."
+excerpt: "2024 brought major life changes: welcoming daughter Tiffany, transitioning to a new role at Microsoft, completing home renovations, and exploring AI and theology."
+keywords:
+  [
+    "2024 retrospective",
+    "career growth",
+    "family life",
+    "Microsoft",
+    "home renovation",
+    "AI",
+    "theology",
+    "software engineering",
+    "personal growth",
+  ]
+canonicalUrl: "/blog/2024-retrospective"
+noindex: false
+nofollow: false
+
+# Visual Assets
 image: "/2024-retro.png"
 coverImage: "/valley.jpg"
+openGraphImage: "/2024-retro.png"
+
+# Content Organization
+category: "Year in Review"
 tags: ["career", "family", "home-improvement", "ai", "theology"]
+series: "Annual Retrospectives"
+featured: true
+timeToRead: "15 minutes"
+
+# Enhanced Navigation
+tableOfContents: true
 ---
 
 ## 📈 What's New at Work: Growth Through Change

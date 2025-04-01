@@ -3,10 +3,17 @@ import Head from "next/head";
 type SeoProps = {
   title?: string;
   description?: string;
+  excerpt?: string;
+  keywords?: string[];
   openGraphImage?: string;
   canonicalUrl?: string;
   noindex?: boolean;
   nofollow?: boolean;
+  language?: string;
+  author?: string;
+  datePublished?: string;
+  dateModified?: string;
+  type?: "website" | "article";
 };
 
 const getAbsoluteUrl = (path: string) => {
@@ -17,10 +24,17 @@ const getAbsoluteUrl = (path: string) => {
 export default function Seo({
   title,
   description,
-  openGraphImage = "/profile.jpeg", // Default OG image
+  excerpt,
+  keywords = [],
+  openGraphImage = "/profile.jpeg",
   canonicalUrl,
   noindex = false,
   nofollow = false,
+  language = "en",
+  author = "Daniel Fullerton",
+  datePublished,
+  dateModified,
+  type = "website",
 }: SeoProps) {
   const siteTitle = "Daniel Fullerton";
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
@@ -35,10 +49,17 @@ export default function Seo({
     <Head>
       <title>{fullTitle}</title>
       <meta name="description" content={finalDescription} />
+      {excerpt && <meta name="excerpt" content={excerpt} />}
+      {keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(", ")} />
+      )}
+      <meta name="language" content={language} />
+      <meta name="author" content={author} />
 
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={finalDescription} />
+      <meta property="og:type" content={type} />
       {openGraphImage && (
         <>
           <meta property="og:image" content={absoluteOgImage} />
@@ -47,7 +68,13 @@ export default function Seo({
           <meta property="og:image:height" content="630" />
         </>
       )}
-      <meta property="og:type" content="website" />
+      {datePublished && (
+        <meta property="article:published_time" content={datePublished} />
+      )}
+      {dateModified && (
+        <meta property="article:modified_time" content={dateModified} />
+      )}
+      {author && <meta property="article:author" content={author} />}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -71,6 +98,23 @@ export default function Seo({
           }`}
         />
       )}
+
+      {/* Schema.org */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": type === "article" ? "Article" : "WebPage",
+          headline: title,
+          description: finalDescription,
+          image: absoluteOgImage,
+          author: {
+            "@type": "Person",
+            name: author,
+          },
+          datePublished: datePublished,
+          dateModified: dateModified || datePublished,
+        })}
+      </script>
     </Head>
   );
 }
