@@ -135,9 +135,6 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
             )}
           </div>
           <p className="text-xl text-gray-600">{metadata.description}</p>
-          {metadata.excerpt && (
-            <p className="text-gray-500 mt-2">{metadata.excerpt}</p>
-          )}
         </header>
         <div className="prose lg:prose-xl">{children}</div>
       </article>
