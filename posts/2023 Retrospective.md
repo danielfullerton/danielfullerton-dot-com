@@ -20,7 +20,7 @@ keywords:
     "personal growth",
     "software engineering",
   ]
-canonicalUrl: "/blog/2023%20retrospective"
+canonicalUrl: "/blog/2023%20Retrospective"
 noindex: false
 nofollow: false
 
