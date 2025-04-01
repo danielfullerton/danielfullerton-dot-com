@@ -1,0 +1,40 @@
+export const technologies = {
+  languages: ["Scala", "Java", "C#", "Go", "JavaScript", "TypeScript"],
+  frameworks: [
+    "Spring Framework",
+    ".NET",
+    "NestJS",
+    "Next.js",
+    "Angular",
+    "React",
+    "React Native",
+    "GraphQL (Hot Chocolate)",
+  ],
+  bigData: [
+    "Apache Spark",
+    "Spark Streaming",
+    "Azure Synapse Analytics",
+    "Azure HDInsight",
+    "Azure Data Factory",
+    "Databricks",
+    "Google BigQuery",
+  ],
+  cloudPlatforms: [
+    "Microsoft Azure",
+    "Amazon Web Services (AWS)",
+    "Google Cloud Platform (GCP)",
+  ],
+  azureServices: [
+    "Azure App Service",
+    "Azure SQL Database",
+    "Azure Storage",
+    "Azure Event Hubs",
+    "Microsoft Entra ID",
+  ],
+  databases: [
+    "MongoDB",
+    "Elasticsearch",
+    "Azure SQL Database",
+    "Google BigQuery",
+  ],
+};
