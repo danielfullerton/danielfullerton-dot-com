@@ -9,6 +9,7 @@ type BlogMetadata = {
   author: string;
   image?: string;
   coverImage?: string;
+  tags?: string[];
 };
 
 type BlogLayoutProps = {
@@ -66,6 +67,18 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
           <div className="text-gray-600 mb-2">
             <time>{metadata.date}</time> • {metadata.author}
           </div>
+          {metadata.tags && metadata.tags.length > 0 && (
+            <div className="flex gap-2 mb-3">
+              {metadata.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-sm"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
           <p className="text-xl text-gray-600">{metadata.description}</p>
         </header>
         <div className="prose lg:prose-xl">{children}</div>

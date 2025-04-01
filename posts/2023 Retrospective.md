@@ -5,6 +5,7 @@ description: "A look back at major life changes in 2022-2023, including joining 
 author: "Daniel Fullerton"
 image: "/df.png"
 coverImage: null
+tags: ["career", "family", "woodworking", "home-improvement", "personal"]
 ---
 
 Alright, it's been a while since I wrote my last article here - but that should tell you just how busy I've been! The latter half of 2022 and all of 2023

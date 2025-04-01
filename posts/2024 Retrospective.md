@@ -1,13 +1,14 @@
 ---
 title: "2024 Retrospective"
 date: "2025-03-30"
-description: "A look back on a transformative year—from welcoming our daughter Tiffany to starting a new role at Microsoft, completing a major home renovation, and diving deeper into AI and theology. This post reflects on the blessings and challenges of 2024 and what I’m looking forward to in the rest of 2025."
+description: "A look back on a transformative year—from welcoming our daughter Tiffany to starting a new role at Microsoft, completing a major home renovation, and diving deeper into AI and theology. This post reflects on the blessings and challenges of 2024 and what I'm looking forward to in the rest of 2025."
 author: "Daniel Fullerton"
 image: "/2024-retro.png"
 coverImage: "/valley.jpg"
+tags: ["career", "family", "home-improvement", "ai", "theology"]
 ---
 
-## 📈 What’s New at Work: Growth Through Change
+## 📈 What's New at Work: Growth Through Change
 
 Over the past year, one of the most significant changes in my career happened due to an internal reorganization at Microsoft. I transitioned from the Data Insights and Platforms team, where I worked on Spark Scala batch pipelines and big data infrastructure, to a new role on the Orders team within the Charge Lifecycle Platform organization.
 
@@ -25,7 +26,7 @@ In terms of developer productivity, I've been eliminating friction by implementi
 
 ## 👨‍👩‍👧‍👦 Life Lately: Family First, and a Bit of Everything Else
 
-As I write this, I'm still in the hospital awaiting discharge after the birth of our daughter, Tiffany Grace Fullerton, who joined us in late March 2025. She's healthy, happy, and full of life—a true blessing. My wife Samantha is recovering well, and we're grateful everything went smoothly without any complications. We couldn’t have hoped for a better outcome.
+As I write this, I'm still in the hospital awaiting discharge after the birth of our daughter, Tiffany Grace Fullerton, who joined us in late March 2025. She's healthy, happy, and full of life—a true blessing. My wife Samantha is recovering well, and we're grateful everything went smoothly without any complications. We couldn't have hoped for a better outcome.
 
 ![](/stork.png)
 
@@ -37,7 +38,7 @@ However, I still managed to tackle a few meaningful projects, including a comple
 
 I've also been spending more time reading, focusing on two main areas. Professionally, I'm exploring Generative AI—including prompt engineering, LLM internals, AI tools, and cost-effective application integrations. Personally, I'm delving further into Reformed Theology, studying topics like apologetics, church history, and biblical commentaries. It's refreshing to balance hands-on, practical learning with deeper theological reflection.
 
-All in all, it’s been a year filled with gratitude, growth, and grace.
+All in all, it's been a year filled with gratitude, growth, and grace.
 
 ## 🔭 Looking Ahead: Rest, Renewal, and Re-engagement
 
@@ -47,12 +48,12 @@ I'm also hoping to catch up on some personal projects that have been on hold, li
 
 When I return to work this summer, I'm excited to build on the momentum from the past year. I want to continue tackling new technical challenges and explore ways to integrate my growing interest in AI—from tooling and prompt engineering to system design—into my daily work as a software engineer. There's tremendous potential for these technologies to reshape how we work, and I'm eager to help our team evolve and grow with them.
 
-More than anything, I’m hoping that the rest of 2025 will be marked by **intentionality**—in my time, in my relationships, and in the work I do.
+More than anything, I'm hoping that the rest of 2025 will be marked by **intentionality**—in my time, in my relationships, and in the work I do.
 
 ![](/intentionality.png)
 
 ## ✨ Closing Thoughts
 
-This past year has been one of significant transition, both personally and professionally. From welcoming a new baby to taking on a new role at work, it’s been a time full of challenges and growth.
+This past year has been one of significant transition, both personally and professionally. From welcoming a new baby to taking on a new role at work, it's been a time full of challenges and growth.
 
-Here’s to a year ahead filled with purpose, presence, and progress!
+Here's to a year ahead filled with purpose, presence, and progress!
