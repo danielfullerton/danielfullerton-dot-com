@@ -2,6 +2,8 @@ import fs from "fs";
 import matter from "gray-matter";
 import { GetStaticPaths, GetStaticProps } from "next";
 import path from "path";
+import { rehype } from "rehype";
+import rehypeMermaid from "rehype-mermaid";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
 import remarkParse from "remark-parse";
@@ -51,8 +53,12 @@ async function markdownToHtml(markdown: string) {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })
+    .use(rehypeMermaid)
     .process(markdown);
-  return result.toString();
+
+  return (
+    await rehype().use(rehypeMermaid, {}).process(result.toString())
+  ).toString();
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

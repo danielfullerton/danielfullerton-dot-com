@@ -25,7 +25,7 @@ noindex: false
 nofollow: false
 
 # Visual Assets
-image: "/df.png"
+image: "/2023-retro.png"
 coverImage: null
 openGraphImage: "/df.png"
 

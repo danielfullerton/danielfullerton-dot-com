@@ -2,9 +2,10 @@ import Navbar from "@/components/Navbar";
 import fs from "fs";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import path from "path";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type BlogPost = {
   slug: string;
@@ -17,6 +18,7 @@ type BlogPost = {
   series?: string;
   featured?: boolean;
   timeToRead?: string;
+  image?: string;
 };
 
 type BlogIndexProps = {
@@ -46,6 +48,7 @@ export const getStaticProps: GetStaticProps<BlogIndexProps> = async () => {
         series: data.series,
         featured: data.featured || false,
         timeToRead: data.timeToRead,
+        image: data.image,
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -71,6 +74,22 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
   const [showFeaturedOnly, setShowFeaturedOnly] = useState(false);
+  const [isTagsDropdownOpen, setIsTagsDropdownOpen] = useState(false);
+  const tagsDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        tagsDropdownRef.current &&
+        !tagsDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsTagsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const filteredPosts = posts.filter((post) => {
     const matchesTags =
@@ -116,21 +135,18 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Filter by Series
                   </label>
-                  <div className="flex flex-wrap gap-2">
+                  <select
+                    value={selectedSeries || ""}
+                    onChange={(e) => handleSeriesChange(e.target.value || null)}
+                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="">All Series</option>
                     {allSeries.map((series) => (
-                      <button
-                        key={series}
-                        onClick={() => handleSeriesChange(series)}
-                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                          selectedSeries === series
-                            ? "bg-blue-600 text-white"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
-                      >
+                      <option key={series} value={series}>
                         {series}
-                      </button>
+                      </option>
                     ))}
-                  </div>
+                  </select>
                 </div>
               )}
 
@@ -158,20 +174,39 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Filter by Tags
                 </label>
-                <div className="flex flex-wrap gap-2">
-                  {allTags.map((tag) => (
-                    <button
-                      key={tag}
-                      onClick={() => handleTagClick(tag)}
-                      className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                        selectedTags.includes(tag)
-                          ? "bg-blue-600 text-white"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
-                    >
-                      {tag}
-                    </button>
-                  ))}
+                <div className="relative" ref={tagsDropdownRef}>
+                  <button
+                    onClick={() => setIsTagsDropdownOpen(!isTagsDropdownOpen)}
+                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-left"
+                  >
+                    {selectedTags.length === 0
+                      ? "Select Tags"
+                      : `${selectedTags.length} tag${
+                          selectedTags.length === 1 ? "" : "s"
+                        } selected`}
+                  </button>
+                  {isTagsDropdownOpen && (
+                    <div className="absolute z-10 mt-1 w-64 bg-white border border-gray-300 rounded-md shadow-lg">
+                      <div className="p-2 max-h-60 overflow-auto">
+                        {allTags.map((tag) => (
+                          <label
+                            key={tag}
+                            className="flex items-center px-2 py-1.5 hover:bg-gray-50 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={selectedTags.includes(tag)}
+                              onChange={() => handleTagClick(tag)}
+                              className="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                            />
+                            <span className="ml-2 text-sm text-gray-700">
+                              {tag}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -187,13 +222,26 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                   href={`/blog/${post.slug}`}
                   className="block hover:text-blue-600 transition-colors"
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <h2 className="text-2xl font-bold">{post.title}</h2>
-                    {post.featured && (
-                      <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-sm ml-2">
-                        Featured
-                      </span>
+                  <div className="flex items-center gap-4 mb-2">
+                    {post.image && (
+                      <div className="relative w-12 h-12 flex-shrink-0 rounded overflow-hidden">
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                          sizes="48px"
+                        />
+                      </div>
                     )}
+                    <div className="flex items-start justify-between flex-1">
+                      <h2 className="text-2xl font-bold">{post.title}</h2>
+                      {post.featured && (
+                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-sm ml-2">
+                          Featured
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                     <time>{post.date}</time>

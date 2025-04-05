@@ -35,7 +35,7 @@ openGraphImage: "/2024-retro.png"
 category: "Year in Review"
 tags: ["career", "family", "home-improvement", "ai", "theology"]
 series: "Annual Retrospectives"
-featured: true
+featured: false
 timeToRead: "15 minutes"
 
 # Enhanced Navigation
