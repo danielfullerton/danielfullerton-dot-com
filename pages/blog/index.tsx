@@ -221,7 +221,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-sm"
+                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-sm inline-flex items-center leading-snug min-h-[1.75rem]"
                         >
                           {tag}
                         </span>
