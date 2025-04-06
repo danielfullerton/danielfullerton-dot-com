@@ -9,7 +9,13 @@ declare global {
     gtag: (
       command: string,
       action: string,
-      params?: Record<string, any>
+      params?: {
+        page_path?: string;
+        page_location?: string;
+        page_title?: string;
+        send_to?: string;
+        [key: string]: string | undefined;
+      }
     ) => void;
   }
 }
