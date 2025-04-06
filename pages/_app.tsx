@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div
       className={`${inter.variable} ${inter.className} min-h-screen flex flex-col`}
     >
+      <GoogleAnalytics />
       <main className="flex-grow">
         <Component {...pageProps} />
       </main>
