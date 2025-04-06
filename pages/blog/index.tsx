@@ -248,7 +248,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     {post.timeToRead && (
                       <>
                         <span>•</span>
-                        <span>{post.timeToRead} read</span>
+                        <span>{post.timeToRead} to read</span>
                       </>
                     )}
                     {post.category && (
