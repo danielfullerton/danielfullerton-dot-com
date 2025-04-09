@@ -99,7 +99,7 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
           }`}
         >
           <button
-            onClick={() => router.back()}
+            onClick={() => router.push("/blog")}
             className="mb-4 inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors"
           >
             <svg

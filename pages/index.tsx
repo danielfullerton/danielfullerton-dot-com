@@ -1,10 +1,26 @@
+import { GetStaticProps } from "next";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
+import RecentBlogPost from "../components/RecentBlogPost";
 import Seo from "../components/Seo";
 import Skills from "../components/Skills";
 import SocialLinks from "../components/SocialLinks";
+import { BlogPost, getLatestBlogPost } from "../utils/blog";
 
-export default function Home() {
+type HomeProps = {
+  latestPost: BlogPost | null;
+};
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const latestPost = await getLatestBlogPost();
+  return {
+    props: {
+      latestPost,
+    },
+  };
+};
+
+export default function Home({ latestPost }: HomeProps) {
   return (
     <div className="min-h-screen parallax-gradient">
       <div className="parallax-content">
@@ -19,6 +35,7 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-md overflow-hidden p-8">
             <Profile />
             <Skills />
+            {latestPost && <RecentBlogPost post={latestPost} />}
             <SocialLinks />
           </div>
         </main>
