@@ -38,7 +38,7 @@ export default function Seo({
 }: SeoProps) {
   const siteTitle = "Daniel Fullerton";
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
-  const defaultDescription = "Software Engineer and Woodworker";
+  const defaultDescription = "Software Engineer";
   const finalDescription = description || defaultDescription;
   const absoluteOgImage = getAbsoluteUrl(openGraphImage);
   const absoluteCanonicalUrl = canonicalUrl
