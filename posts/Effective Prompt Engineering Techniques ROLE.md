@@ -36,7 +36,7 @@ openGraphImage: "/prompt-techniques.png"
 category: "Artificial Intelligence"
 tags: ["ai", "prompt-engineering", "best-practices", "productivity"]
 series: "AI & Engineering"
-featured: true
+featured: false
 timeToRead: "5 minutes"
 
 # Enhanced Navigation
