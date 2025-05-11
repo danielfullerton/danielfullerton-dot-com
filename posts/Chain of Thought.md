@@ -44,8 +44,6 @@ timeToRead: "7 minutes"
 tableOfContents: true
 ---
 
-# Mastering Chain of Thought Reasoning in AI: A Practical Guide for Developers
-
 ## Introduction
 
 LLMs are great at quickly generating answers, but how do we make them _think_? Oftentimes, you'll find that an LLM can provide a correct answer to a subjective question, such as "what is the best programming language" or
