@@ -94,13 +94,13 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
         <header
           className={`mb-8 ${
             metadata.coverImage
-              ? "-mt-32 bg-white p-8 rounded-lg shadow-lg"
+              ? "-mt-32 bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg"
               : ""
           }`}
         >
           <button
             onClick={() => router.push("/blog")}
-            className="mb-4 inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+            className="mb-4 inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,8 +116,10 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
             </svg>
             Back to Blog
           </button>
-          <h1 className="text-4xl font-bold mb-2">{metadata.title}</h1>
-          <div className="text-gray-600 mb-2 flex items-center gap-2 flex-wrap">
+          <h1 className="text-4xl font-bold mb-2 text-gray-900 dark:text-white">
+            {metadata.title}
+          </h1>
+          <div className="text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-2 flex-wrap">
             <time>{metadata.date}</time>
             <span>•</span>
             <span>{metadata.author}</span>
@@ -130,33 +132,42 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
             {metadata.category && (
               <>
                 <span>•</span>
-                <span className="text-blue-600">{metadata.category}</span>
+                <span className="text-blue-600 dark:text-blue-400">
+                  {metadata.category}
+                </span>
               </>
             )}
           </div>
           {metadata.series && (
-            <div className="text-gray-600 mb-2">
-              Series: <span className="text-blue-600">{metadata.series}</span>
+            <div className="text-gray-600 dark:text-gray-400 mb-2">
+              Series:{" "}
+              <span className="text-blue-600 dark:text-blue-400">
+                {metadata.series}
+              </span>
             </div>
           )}
           <div className="flex flex-wrap gap-2 mb-3">
             {metadata.tags?.map((tag) => (
               <span
                 key={tag}
-                className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-sm"
+                className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-md text-sm"
               >
                 {tag}
               </span>
             ))}
             {metadata.featured && (
-              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-sm">
+              <span className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-md text-sm">
                 Featured
               </span>
             )}
           </div>
-          <p className="text-xl text-gray-600">{metadata.description}</p>
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            {metadata.description}
+          </p>
         </header>
-        <div className="prose lg:prose-xl">{children}</div>
+        <div className="prose lg:prose-xl dark:prose-invert prose-a:text-blue-600 dark:prose-a:text-blue-400">
+          {children}
+        </div>
       </article>
     </>
   );
