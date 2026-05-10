@@ -28,27 +28,9 @@ export default function Skills() {
         Technologies & Skills
       </h3>
       <div className="space-y-6">
-        <SkillSection title="Languages" items={technologies.languages} />
-        <SkillSection
-          title="Frameworks & Libraries"
-          items={technologies.frameworks}
-        />
-        <SkillSection
-          title="Big Data & Streaming"
-          items={technologies.bigData}
-        />
-        <SkillSection
-          title="Cloud Platforms"
-          items={technologies.cloudPlatforms}
-        />
-        <SkillSection
-          title="Cloud Services (Azure)"
-          items={technologies.azureServices}
-        />
-        <SkillSection
-          title="Databases & Search"
-          items={technologies.databases}
-        />
+        <SkillSection title="What I work with daily" items={technologies.currentFocus} />
+        <SkillSection title="Shipped to production" items={technologies.productionExperience} />
+        <SkillSection title="Hands-on experience" items={technologies.familiarWith} />
       </div>
     </div>
   );
