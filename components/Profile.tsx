@@ -4,16 +4,16 @@ export default function Profile() {
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between">
       <div className="md:flex-1">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Daniel Fullerton
         </h1>
-        <h2 className="text-2xl text-gray-600 mb-6">Software Engineer</h2>
-        <div className="prose max-w-none text-gray-600 mb-6">
+        <h2 className="text-2xl text-gray-600 dark:text-gray-400 mb-6">Software Engineer</h2>
+        <div className="prose max-w-none text-gray-600 dark:text-gray-400 mb-6">
           <p className="mb-4">
             I&apos;m a software engineer at{" "}
             <a
               href="https://www.linkedin.com/company/microsoft/posts/?feedView=all"
-              className="text-blue-600 hover:text-blue-800 inline-flex items-center no-underline"
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 inline-flex items-center no-underline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -47,7 +47,7 @@ export default function Profile() {
         </div>
       </div>
       <div className="mb-6 md:mb-0 md:mt-0 md:ml-6 flex-shrink-0 order-first md:order-last">
-        <div className="w-48 h-48 rounded-full overflow-hidden bg-gray-200 mx-auto">
+        <div className="w-48 h-48 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 mx-auto">
           <Image
             src="/profile.jpeg"
             alt="Dan Fullerton"

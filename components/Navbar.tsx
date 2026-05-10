@@ -6,7 +6,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white dark:bg-gray-900 shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0">
@@ -29,13 +29,13 @@ export default function Navbar() {
             <div className="flex space-x-8">
               <Link
                 href="/"
-                className="text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md font-medium transition-colors duration-200"
+                className="text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 px-3 py-2 rounded-md font-medium transition-colors duration-200"
               >
                 Home
               </Link>
               <Link
                 href="/blog"
-                className="text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md font-medium transition-colors duration-200"
+                className="text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 px-3 py-2 rounded-md font-medium transition-colors duration-200"
               >
                 Blog
               </Link>
@@ -46,7 +46,7 @@ export default function Navbar() {
           <div className="sm:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-gray-600 focus:outline-none transition-colors duration-200"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none transition-colors duration-200"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -103,13 +103,13 @@ export default function Navbar() {
           <div className="pt-2 pb-3 space-y-1">
             <Link
               href="/"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-gray-600 hover:bg-gray-50 transition-all duration-200"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
             >
               Home
             </Link>
             <Link
               href="/blog"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-gray-600 hover:bg-gray-50 transition-all duration-200"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
             >
               Blog
             </Link>

@@ -44,7 +44,7 @@ export default function SocialLinks() {
           rel={
             link.href.startsWith("mailto") ? undefined : "noopener noreferrer"
           }
-          className="text-gray-400 hover:text-gray-600"
+          className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
           aria-label={link.ariaLabel}
         >
           <svg

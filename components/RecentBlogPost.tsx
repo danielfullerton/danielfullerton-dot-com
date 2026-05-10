@@ -4,13 +4,13 @@ import { BlogPostSummary } from "../types/blog";
 
 export default function RecentBlogPost({ post }: { post: BlogPostSummary }) {
   return (
-    <div className="mt-8 pt-8 border-t border-gray-200">
-      <h3 className="text-xl font-semibold text-gray-900 mb-4">
+    <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
         Latest Blog Post
       </h3>
       <Link
         href={`/blog/${post.slug}`}
-        className="block hover:bg-gray-50 rounded-lg transition-colors p-4 -m-4"
+        className="block hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors p-4 -m-4"
       >
         <article className="flex items-start space-x-4">
           {post.image && (
@@ -27,10 +27,10 @@ export default function RecentBlogPost({ post }: { post: BlogPostSummary }) {
             </div>
           )}
           <div className="flex-1 min-w-0">
-            <h4 className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors">
+            <h4 className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               {post.title}
             </h4>
-            <div className="mt-1 text-sm text-gray-500 flex items-center">
+            <div className="mt-1 text-sm text-gray-500 dark:text-gray-400 flex items-center">
               <time>{post.date}</time>
               {post.timeToRead && (
                 <>
@@ -39,10 +39,10 @@ export default function RecentBlogPost({ post }: { post: BlogPostSummary }) {
                 </>
               )}
             </div>
-            <p className="mt-2 text-sm text-gray-600 line-clamp-2">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
               {post.excerpt || post.description}
             </p>
-            <span className="mt-2 text-sm text-blue-600 hover:text-blue-800 inline-flex items-center group">
+            <span className="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 inline-flex items-center group">
               Read more
               <svg
                 className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-0.5"

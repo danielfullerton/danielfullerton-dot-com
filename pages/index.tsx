@@ -33,7 +33,7 @@ export default function Home({ latestPost }: HomeProps) {
         <Navbar />
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="bg-white rounded-xl shadow-md overflow-hidden p-8">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden p-8">
             <Profile />
             <Skills />
             {latestPost && <RecentBlogPost post={latestPost} />}

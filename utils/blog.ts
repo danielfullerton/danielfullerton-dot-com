@@ -16,7 +16,10 @@ export function getAllPosts(): BlogPostSummary[] {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data } = matter(fileContents);
 
-      return {
+      return { slug, data };
+    })
+    .filter(({ data }) => data.status !== "draft")
+    .map(({ slug, data }) => ({
         slug,
         title: data.title || "Untitled",
         date: data.date || new Date().toISOString(),
@@ -28,8 +31,8 @@ export function getAllPosts(): BlogPostSummary[] {
         featured: data.featured || false,
         timeToRead: data.timeToRead,
         image: data.image,
-      };
-    })
+      }))
+
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -81,5 +84,10 @@ export function getAllSlugs(): string[] {
   const filenames = fs.readdirSync(postsDirectory);
   return filenames
     .filter((filename) => filename.endsWith(".md"))
+    .filter((filename) => {
+      const fullPath = path.join(postsDirectory, filename);
+      const { data } = matter(fs.readFileSync(fullPath, "utf8"));
+      return data.status !== "draft";
+    })
     .map((filename) => filename.replace(".md", ""));
 }

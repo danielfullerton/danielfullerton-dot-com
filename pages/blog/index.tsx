@@ -80,11 +80,11 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-white rounded-xl shadow-md overflow-hidden p-8">
-          <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden p-8">
+          <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Blog Posts</h1>
 
           <div className="space-y-6 mb-8">
             {/* Series and Featured Filters */}
@@ -92,13 +92,13 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               {/* Series Filter */}
               {allSeries.length > 0 && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Filter by Series
                   </label>
                   <select
                     value={selectedSeries || ""}
                     onChange={(e) => handleSeriesChange(e.target.value || null)}
-                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">All Series</option>
                     {allSeries.map((series) => (
@@ -112,7 +112,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
 
               {/* Featured Toggle */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Featured Posts
                 </label>
                 <button
@@ -120,7 +120,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     showFeaturedOnly
                       ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                   }`}
                 >
                   {showFeaturedOnly ? "Show Featured Only" : "Show All Posts"}
@@ -131,13 +131,13 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
             {/* Tags Filter */}
             {allTags.length > 0 && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Filter by Tags
                 </label>
                 <div className="relative" ref={tagsDropdownRef}>
                   <button
                     onClick={() => setIsTagsDropdownOpen(!isTagsDropdownOpen)}
-                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-left"
+                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-left"
                   >
                     {selectedTags.length === 0
                       ? "Select Tags"
@@ -146,12 +146,12 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                         } selected`}
                   </button>
                   {isTagsDropdownOpen && (
-                    <div className="absolute z-10 mt-1 w-64 bg-white border border-gray-300 rounded-md shadow-lg">
+                    <div className="absolute z-10 mt-1 w-64 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg">
                       <div className="p-2 max-h-60 overflow-auto">
                         {allTags.map((tag) => (
                           <label
                             key={tag}
-                            className="flex items-center px-2 py-1.5 hover:bg-gray-50 cursor-pointer"
+                            className="flex items-center px-2 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
                           >
                             <input
                               type="checkbox"
@@ -159,7 +159,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                               onChange={() => handleTagClick(tag)}
                               className="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
                             />
-                            <span className="ml-2 text-sm text-gray-700">
+                            <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                               {tag}
                             </span>
                           </label>
@@ -176,11 +176,11 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
             {filteredPosts.map((post) => (
               <article
                 key={post.slug}
-                className="border-b pb-8 last:border-b-0"
+                className="border-b dark:border-gray-700 pb-8 last:border-b-0"
               >
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="block hover:text-blue-600 transition-colors"
+                  className="block text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   <div className="flex items-center gap-4 mb-2">
                     {post.image && (
@@ -197,13 +197,13 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     <div className="flex items-start justify-between flex-1">
                       <h2 className="text-2xl font-bold">{post.title}</h2>
                       {post.featured && (
-                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-sm ml-2">
+                        <span className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-md text-sm ml-2">
                           Featured
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-2">
                     <time>{post.date}</time>
                     {post.timeToRead && (
                       <>
@@ -214,14 +214,14 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     {post.category && (
                       <>
                         <span>•</span>
-                        <span className="text-blue-600">{post.category}</span>
+                        <span className="text-blue-600 dark:text-blue-400">{post.category}</span>
                       </>
                     )}
                   </div>
                   {post.series && (
-                    <div className="text-sm text-gray-600 mb-2">
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                       Series:{" "}
-                      <span className="text-blue-600">{post.series}</span>
+                      <span className="text-blue-600 dark:text-blue-400">{post.series}</span>
                     </div>
                   )}
                   {post.tags && post.tags.length > 0 && (
@@ -229,7 +229,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-sm inline-flex items-center leading-snug min-h-[1.75rem]"
+                          className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-md text-sm inline-flex items-center leading-snug min-h-[1.75rem]"
                         >
                           {tag}
                         </span>
@@ -237,10 +237,10 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     </div>
                   )}
                   {post.excerpt ? (
-                    <p className="text-gray-600">{post.excerpt}</p>
+                    <p className="text-gray-600 dark:text-gray-400">{post.excerpt}</p>
                   ) : (
                     post.description && (
-                      <p className="text-gray-600">{post.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400">{post.description}</p>
                     )
                   )}
                 </Link>
