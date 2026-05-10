@@ -9,8 +9,8 @@ status: "draft"
 
 # SEO & Social
 
-description: ""
-excerpt: ""
+description: "A Christian software engineer's reflections on using generative AI thoughtfully — from Bible study and theology research to avoiding the temptation of treating AI as an authority."
+excerpt: "Reflections on the intersection of Christian faith and generative AI — how to use it wisely for study and work without losing sight of what matters most."
 keywords: []
 canonicalUrl: "/blog/faith-and-ai"
 noindex: false

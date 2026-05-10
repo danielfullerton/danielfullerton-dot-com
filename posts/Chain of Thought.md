@@ -8,8 +8,8 @@ language: "en"
 status: "published"
 
 # SEO & Social
-description: ""
-excerpt: ""
+description: "Chain of Thought reasoning helps AI models solve complex problems by thinking step by step instead of jumping to an answer. Learn how this prompting technique works, why it improves accuracy, and when to use it."
+excerpt: "Learn how Chain of Thought prompting helps AI models reason through complex problems step by step, improving accuracy on math, logic, and multi-step tasks."
 keywords:
   [
     "prompt engineering",

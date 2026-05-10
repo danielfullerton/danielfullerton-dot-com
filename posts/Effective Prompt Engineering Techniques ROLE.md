@@ -8,8 +8,8 @@ language: "en"
 status: "published"
 
 # SEO & Social
-description: ""
-excerpt: ""
+description: "The ROLE technique is a structured prompting framework that helps you get better results from AI by defining the Role, Objective, Limitations, and Examples upfront. A practical guide with real examples."
+excerpt: "A practical guide to the ROLE prompting technique — define the Role, Objective, Limitations, and Examples to get more focused, useful responses from AI models."
 keywords:
   [
     "prompt engineering",
