@@ -1,57 +1,17 @@
 import Navbar from "@/components/Navbar";
-import fs from "fs";
-import matter from "gray-matter";
+import { BlogPostSummary } from "@/types/blog";
+import { getAllPosts } from "@/utils/blog";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import path from "path";
 import { useEffect, useRef, useState } from "react";
 
-type BlogPost = {
-  slug: string;
-  title: string;
-  date: string;
-  description: string;
-  excerpt?: string;
-  tags?: string[];
-  category?: string;
-  series?: string;
-  featured?: boolean;
-  timeToRead?: string;
-  image?: string;
-};
-
 type BlogIndexProps = {
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
 };
 
 export const getStaticProps: GetStaticProps<BlogIndexProps> = async () => {
-  const postsDirectory = path.join(process.cwd(), "posts");
-  const filenames = fs.readdirSync(postsDirectory);
-
-  const posts: BlogPost[] = filenames
-    .filter((filename) => filename.endsWith(".md"))
-    .map((filename) => {
-      const slug = filename.replace(".md", "");
-      const fullPath = path.join(postsDirectory, filename);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data } = matter(fileContents);
-
-      return {
-        slug,
-        title: data.title || "Untitled",
-        date: data.date || new Date().toISOString(),
-        description: data.description || "",
-        excerpt: data.excerpt,
-        tags: data.tags || [],
-        category: data.category,
-        series: data.series,
-        featured: data.featured || false,
-        timeToRead: data.timeToRead,
-        image: data.image,
-      };
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const posts = getAllPosts();
 
   return {
     props: {

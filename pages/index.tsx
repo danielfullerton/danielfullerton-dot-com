@@ -5,14 +5,15 @@ import RecentBlogPost from "../components/RecentBlogPost";
 import Seo from "../components/Seo";
 import Skills from "../components/Skills";
 import SocialLinks from "../components/SocialLinks";
-import { BlogPost, getLatestBlogPost } from "../utils/blog";
+import { BlogPostSummary } from "../types/blog";
+import { getLatestPost } from "../utils/blog";
 
 type HomeProps = {
-  latestPost: BlogPost | null;
+  latestPost: BlogPostSummary | null;
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const latestPost = await getLatestBlogPost();
+  const latestPost = getLatestPost();
   return {
     props: {
       latestPost,

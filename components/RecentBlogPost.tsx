@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BlogPost } from "../utils/blog";
+import { BlogPostSummary } from "../types/blog";
 
-export default function RecentBlogPost({ post }: { post: BlogPost }) {
+export default function RecentBlogPost({ post }: { post: BlogPostSummary }) {
   return (
     <div className="mt-8 pt-8 border-t border-gray-200">
       <h3 className="text-xl font-semibold text-gray-900 mb-4">

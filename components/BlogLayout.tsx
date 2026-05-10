@@ -1,44 +1,12 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { BlogPostMetadata } from "../types/blog";
 import Navbar from "./Navbar";
 import Seo from "./Seo";
 
-type BlogMetadata = {
-  // Core Metadata
-  title: string;
-  date: string;
-  lastModified?: string;
-  author: string;
-  language?: string;
-  status?: "draft" | "published";
-
-  // SEO & Social
-  description: string;
-  excerpt?: string;
-  keywords?: string[];
-  canonicalUrl?: string;
-  noindex?: boolean;
-  nofollow?: boolean;
-
-  // Visual Assets
-  image?: string;
-  coverImage?: string;
-  openGraphImage?: string;
-
-  // Content Organization
-  category?: string;
-  tags?: string[];
-  series?: string;
-  featured?: boolean;
-  timeToRead?: string;
-
-  // Enhanced Navigation
-  tableOfContents?: boolean;
-};
-
 type BlogLayoutProps = {
   children: React.ReactNode;
-  metadata: BlogMetadata;
+  metadata: BlogPostMetadata;
 };
 
 export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
