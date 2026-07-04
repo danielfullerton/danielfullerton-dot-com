@@ -12,6 +12,7 @@ export default function Profile() {
       <p className="kicker reveal d1">
         Software Engineer &nbsp;—&nbsp; Microsoft · Commerce
       </p>
+      <p className="kicker reveal d1 mt-2 t-muted">Atlanta, GA</p>
 
       <h1 className="masthead t-ink mt-5 reveal d2">
         Daniel
@@ -32,19 +33,27 @@ export default function Profile() {
               >
                 Microsoft
               </a>{" "}
-              specializing in data engineering and cloud architecture. On the
-              Commerce team, I build scalable solutions for customer invoice
-              aggregation using{" "}
-              <span className="t-ink font-medium">Scala</span>,{" "}
-              <span className="t-ink font-medium">Spark&nbsp;Streaming</span>,
-              and <span className="t-ink font-medium">Azure</span> — pairing
-              traditional software engineering with modern AI tooling for
-              efficient, high-quality code.
+              on the Commerce team. I own the near-real-time reconciliation and
+              billing infrastructure behind a mission-critical, SOX-regulated
+              commerce platform that processes{" "}
+              <span className="t-ink font-medium">
+                billions of billing events
+              </span>{" "}
+              a month and has to close each month at 100% accuracy. Day to day
+              that means <span className="t-ink font-medium">Scala</span> and{" "}
+              <span className="t-ink font-medium">Spark</span> on{" "}
+              <span className="t-ink font-medium">Azure</span>, reconciliation
+              pipelines, livesite on-call, and the security and cost work that
+              keeps a financial system trustworthy.
             </p>
             <p className="t-muted">
-              Previously I built retail operations apps at T-Mobile (Java Spring
-              microservices, Angular) and talent-management platforms at Randstad
-              (TypeScript, Node.js, Google Cloud). B.S. in Computer Science.
+              Before Commerce I spent two years in big-data platform
+              engineering — GraphQL data APIs, data governance and lineage, and
+              Spark-based data-quality libraries. Earlier I built retail
+              operations apps at T-Mobile (Java/Spring, Angular) and
+              talent-management platforms at Randstad (TypeScript, Node.js,
+              Google Cloud). B.S. in Computer Science. I lean heavily on modern
+              AI tooling to move fast without giving up rigor.
             </p>
           </div>
 
@@ -74,6 +83,11 @@ export default function Profile() {
             <nav className="w-full">
               <p className="kicker mb-3">Contents</p>
               <ul className="space-y-2 font-mono text-[0.82rem]">
+                <li>
+                  <a href="#work" className="ul-link t-muted">
+                    Work
+                  </a>
+                </li>
                 <li>
                   <a href="#skills" className="ul-link t-muted">
                     Stack
