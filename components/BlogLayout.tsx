@@ -1,6 +1,6 @@
-import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { BlogPostMetadata } from "../types/blog";
+import { formatDate } from "../utils/formatDate";
 import Navbar from "./Navbar";
 import Seo from "./Seo";
 
@@ -10,23 +10,6 @@ type BlogLayoutProps = {
 };
 
 export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
-  const router = useRouter();
-  const parallaxRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (parallaxRef.current) {
-        const scrolled = window.scrollY;
-        parallaxRef.current.style.transform = `translate3d(0, ${
-          scrolled * 0.5
-        }px, 0) scale(1.4) translateY(-10%)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       <Seo
@@ -45,95 +28,86 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
         type="article"
       />
       <Navbar />
-      {metadata.coverImage && (
-        <div className="relative h-[50vh] w-full overflow-hidden">
-          <div
-            ref={parallaxRef}
-            className="absolute inset-0 bg-center bg-cover bg-no-repeat scale-[1.4] -translate-y-[10%]"
-            style={{
-              backgroundImage: `url(${metadata.coverImage})`,
-              willChange: "transform",
-            }}
-          />
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-      )}
-      <article className="max-w-2xl mx-auto px-4 py-8 relative">
-        <header
-          className={`mb-8 ${
-            metadata.coverImage
-              ? "-mt-32 bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg"
-              : ""
-          }`}
+      <article className="mx-auto max-w-2xl px-6 lg:px-8 pt-12 pb-20">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 font-mono text-[0.78rem] tracking-wide t-muted hover-accent transition-colors"
         >
-          <button
-            onClick={() => router.push("/blog")}
-            className="mb-4 inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          <span aria-hidden="true">←</span> Back to Blog
+        </Link>
+
+        <header className="mt-8 mb-10">
+          {(metadata.category || metadata.series) && (
+            <p className="kicker reveal d1">
+              {metadata.category || metadata.series}
+            </p>
+          )}
+          <h1
+            className="font-display font-medium t-ink mt-4 reveal d2 leading-[1.02] tracking-[-0.015em]"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)" }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Back to Blog
-          </button>
-          <h1 className="text-4xl font-bold mb-2 text-gray-900 dark:text-white">
             {metadata.title}
           </h1>
-          <div className="text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-2 flex-wrap">
-            <time>{metadata.date}</time>
-            <span>•</span>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-wide t-faint reveal d3">
+            <time dateTime={metadata.date}>{formatDate(metadata.date)}</time>
+            <span aria-hidden="true">·</span>
             <span>{metadata.author}</span>
             {metadata.timeToRead && (
               <>
-                <span>•</span>
-                <span>{metadata.timeToRead} to read</span>
+                <span aria-hidden="true">·</span>
+                <span>{metadata.timeToRead}</span>
               </>
             )}
-            {metadata.category && (
+            {metadata.featured && (
               <>
-                <span>•</span>
-                <span className="text-blue-600 dark:text-blue-400">
-                  {metadata.category}
-                </span>
+                <span aria-hidden="true">·</span>
+                <span className="t-accent uppercase">Featured</span>
               </>
             )}
           </div>
+
           {metadata.series && (
-            <div className="text-gray-600 dark:text-gray-400 mb-2">
-              Series:{" "}
-              <span className="text-blue-600 dark:text-blue-400">
-                {metadata.series}
-              </span>
+            <p className="mt-3 font-mono text-[0.72rem] t-faint">
+              Series: <span className="t-muted">{metadata.series}</span>
+            </p>
+          )}
+
+          {metadata.tags && metadata.tags.length > 0 && (
+            <div className="techrun mt-3 text-[0.74rem] t-faint">
+              {metadata.tags.map((tag) => (
+                <span key={tag} className="tech">
+                  {tag}
+                </span>
+              ))}
             </div>
           )}
-          <div className="flex flex-wrap gap-2 mb-3">
-            {metadata.tags?.map((tag) => (
-              <span
-                key={tag}
-                className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-md text-sm"
-              >
-                {tag}
-              </span>
-            ))}
-            {metadata.featured && (
-              <span className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-md text-sm">
-                Featured
-              </span>
-            )}
-          </div>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
-            {metadata.description}
-          </p>
+
+          {metadata.description && (
+            <p className="mt-6 prose-body t-muted font-body">
+              {metadata.description}
+            </p>
+          )}
         </header>
-        <div className="prose lg:prose-xl dark:prose-invert prose-a:text-blue-600 dark:prose-a:text-blue-400">
+
+        {metadata.coverImage && (
+          <div className="mb-10 overflow-hidden rounded-lg border rule">
+            <div
+              className="aspect-[16/9] bg-center bg-cover bg-no-repeat"
+              style={{ backgroundImage: `url(${metadata.coverImage})` }}
+              role="img"
+              aria-label={metadata.title}
+            />
+          </div>
+        )}
+
+        <div
+          className="prose prose-lg dark:prose-invert max-w-none font-body
+            prose-headings:font-display prose-headings:font-medium prose-headings:tracking-[-0.01em]
+            prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+            prose-code:font-mono prose-code:text-[0.9em]
+            prose-img:rounded-lg"
+        >
           {children}
         </div>
       </article>
