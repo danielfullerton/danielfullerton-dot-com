@@ -228,7 +228,6 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     href={`/blog/${post.slug}`}
                     className="entry group block py-8 border-b rule"
                   >
-                    <span className="tick font-mono">→</span>
                     <div className="flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-wide t-faint">
                       <span>{formatDate(post.date)}</span>
                       {post.timeToRead && (

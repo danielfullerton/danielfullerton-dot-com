@@ -24,7 +24,6 @@ export default function Work() {
                 style={{ "--i": i } as React.CSSProperties}
               >
                 <div className="work-row group flex items-baseline gap-4">
-                  <span className="tick font-mono">→</span>
                   <span className="work-num font-mono text-[0.72rem] t-faint shrink-0 pt-1 origin-left">
                     {String(i + 1).padStart(2, "0")}
                   </span>

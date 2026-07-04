@@ -72,7 +72,6 @@ export default function Writing({ posts }: { posts: BlogPostSummary[] }) {
                       i < recent.length - 1 ? "border-b rule" : ""
                     }`}
                   >
-                    <span className="tick font-mono">→</span>
                     <span className="font-display text-[1.18rem] leading-snug t-ink">
                       {post.title}
                     </span>

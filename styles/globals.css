@@ -204,27 +204,6 @@ body {
   padding: 0 0.6em;
 }
 
-/* work / writing rows: an ink tick slides in on hover */
-.entry {
-  position: relative;
-}
-.entry .tick {
-  position: absolute;
-  left: -1.15rem;
-  top: 0.15em;
-  color: var(--accent);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
-}
-@media (min-width: 768px) {
-  .entry:hover .tick,
-  .entry:focus-within .tick {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* focus-visible outlines (accessibility — do not regress) */
 .theme-toggle:focus-visible,
 a:focus-visible,
@@ -270,8 +249,7 @@ button:focus-visible {
     opacity: 1;
     animation: none;
   }
-  .ul-link::after,
-  .entry .tick {
+  .ul-link::after {
     transition: none;
   }
   html {
