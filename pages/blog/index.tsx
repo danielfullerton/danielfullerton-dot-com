@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar";
+import Seo from "@/components/Seo";
 import { BlogPostSummary } from "@/types/blog";
 import { getAllPosts } from "@/utils/blog";
+import { formatDate } from "@/utils/formatDate";
 import { GetStaticProps } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -80,86 +81,122 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
+    <>
+      <Seo
+        title="Blog"
+        description="Essays and how-tos on software engineering, AI tooling, and prompt engineering by Daniel Fullerton."
+      />
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden p-8">
-          <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Blog Posts</h1>
+      <main className="mx-auto max-w-6xl px-6 lg:px-10">
+        {/* header */}
+        <section className="pt-16 sm:pt-20 lg:pt-24 pb-10 border-b rule">
+          <p className="kicker reveal d1">Writing</p>
+          <h1
+            className="font-display font-medium t-ink mt-4 reveal d2 leading-[0.95] tracking-[-0.018em]"
+            style={{ fontSize: "clamp(2.6rem, 7vw, 4.5rem)" }}
+          >
+            Blog<span className="t-accent">.</span>
+          </h1>
+          <p className="mt-5 prose-body measure t-muted font-body reveal d3">
+            Notes on software engineering, cloud data pipelines, and getting
+            real work out of AI tools.
+          </p>
+        </section>
 
-          <div className="space-y-6 mb-8">
-            {/* Series and Featured Filters */}
-            <div className="flex flex-wrap gap-x-8 gap-y-4">
-              {/* Series Filter */}
-              {allSeries.length > 0 && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Filter by Series
-                  </label>
+        {/* filters */}
+        <section className="py-8 border-b rule">
+          <div className="flex flex-wrap items-end gap-x-10 gap-y-6">
+            {/* Series */}
+            {allSeries.length > 0 && (
+              <div>
+                <label className="kicker block mb-2">Filter by series</label>
+                <div className="relative">
                   <select
                     value={selectedSeries || ""}
-                    onChange={(e) => handleSeriesChange(e.target.value || null)}
-                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    onChange={(e) =>
+                      handleSeriesChange(e.target.value || null)
+                    }
+                    className="appearance-none w-64 pl-3 pr-9 py-2 font-mono text-[0.82rem] t-ink bg-surface border rule rounded-md focus:outline-none focus:border-[color:var(--accent)] transition-colors"
                   >
-                    <option value="">All Series</option>
+                    <option value="">All series</option>
                     {allSeries.map((series) => (
                       <option key={series} value={series}>
                         {series}
                       </option>
                     ))}
                   </select>
+                  <svg
+                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 t-faint"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    aria-hidden="true"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
                 </div>
-              )}
-
-              {/* Featured Toggle */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Featured Posts
-                </label>
-                <button
-                  onClick={handleFeaturedToggle}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                    showFeaturedOnly
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-                  }`}
-                >
-                  {showFeaturedOnly ? "Show Featured Only" : "Show All Posts"}
-                </button>
               </div>
+            )}
+
+            {/* Featured toggle */}
+            <div>
+              <label className="kicker block mb-2">Featured</label>
+              <button
+                onClick={handleFeaturedToggle}
+                aria-pressed={showFeaturedOnly}
+                className={`px-4 py-2 rounded-md font-mono text-[0.82rem] border transition-colors ${
+                  showFeaturedOnly
+                    ? "bg-[color:var(--accent)] text-white border-[color:var(--accent)]"
+                    : "bg-surface t-muted rule hover-ink"
+                }`}
+              >
+                {showFeaturedOnly ? "Featured only" : "All posts"}
+              </button>
             </div>
 
-            {/* Tags Filter */}
+            {/* Tags */}
             {allTags.length > 0 && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Filter by Tags
-                </label>
+                <label className="kicker block mb-2">Filter by tags</label>
                 <div className="relative" ref={tagsDropdownRef}>
                   <button
                     onClick={() => setIsTagsDropdownOpen(!isTagsDropdownOpen)}
-                    className="block w-64 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-left"
+                    className="flex items-center justify-between w-64 pl-3 pr-3 py-2 font-mono text-[0.82rem] t-ink bg-surface border rule rounded-md hover:border-[color:var(--rule-strong)] transition-colors text-left"
                   >
-                    {selectedTags.length === 0
-                      ? "Select Tags"
-                      : `${selectedTags.length} tag${
-                          selectedTags.length === 1 ? "" : "s"
-                        } selected`}
+                    <span className={selectedTags.length ? "t-ink" : "t-faint"}>
+                      {selectedTags.length === 0
+                        ? "Select tags"
+                        : `${selectedTags.length} tag${
+                            selectedTags.length === 1 ? "" : "s"
+                          } selected`}
+                    </span>
+                    <svg
+                      className="w-4 h-4 t-faint shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      aria-hidden="true"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
                   </button>
                   {isTagsDropdownOpen && (
-                    <div className="absolute z-10 mt-1 w-64 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg">
+                    <div className="absolute z-20 mt-2 w-64 bg-surface border rule rounded-md shadow-lg">
                       <div className="p-2 max-h-60 overflow-auto">
                         {allTags.map((tag) => (
                           <label
                             key={tag}
-                            className="flex items-center px-2 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+                            className="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-[color:var(--accent-soft)] cursor-pointer"
                           >
                             <input
                               type="checkbox"
                               checked={selectedTags.includes(tag)}
                               onChange={() => handleTagClick(tag)}
-                              className="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                              className="h-4 w-4 accent-[color:var(--accent)]"
                             />
-                            <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                            <span className="font-mono text-[0.8rem] t-muted">
                               {tag}
                             </span>
                           </label>
@@ -171,84 +208,74 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               </div>
             )}
           </div>
+        </section>
 
-          <div className="space-y-8">
-            {filteredPosts.map((post) => (
-              <article
-                key={post.slug}
-                className="border-b dark:border-gray-700 pb-8 last:border-b-0"
-              >
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="block text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  <div className="flex items-center gap-4 mb-2">
-                    {post.image && (
-                      <div className="relative w-12 h-12 flex-shrink-0 rounded overflow-hidden">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                          sizes="48px"
-                        />
-                      </div>
-                    )}
-                    <div className="flex items-start justify-between flex-1">
-                      <h2 className="text-2xl font-bold">{post.title}</h2>
+        {/* post list */}
+        <section className="py-4">
+          {filteredPosts.length === 0 ? (
+            <p className="py-16 font-mono text-[0.85rem] t-faint">
+              No posts match these filters.
+            </p>
+          ) : (
+            <ol>
+              {filteredPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="entry group block py-8 border-b rule"
+                  >
+                    <span className="tick font-mono">→</span>
+                    <div className="flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-wide t-faint">
+                      <span>{formatDate(post.date)}</span>
+                      {post.timeToRead && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span>{post.timeToRead}</span>
+                        </>
+                      )}
+                      {post.category && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span>{post.category}</span>
+                        </>
+                      )}
                       {post.featured && (
-                        <span className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-md text-sm ml-2">
-                          Featured
-                        </span>
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span className="t-accent uppercase">Featured</span>
+                        </>
                       )}
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-2">
-                    <time>{post.date}</time>
-                    {post.timeToRead && (
-                      <>
-                        <span>•</span>
-                        <span>{post.timeToRead} to read</span>
-                      </>
+                    <h2 className="mt-3 font-display text-[1.5rem] sm:text-[1.7rem] leading-snug font-medium t-ink group-hover:text-accent transition-colors">
+                      {post.title}
+                    </h2>
+                    {(post.excerpt || post.description) && (
+                      <p className="mt-3 font-body text-[1.05rem] leading-relaxed t-muted measure-wide">
+                        {post.excerpt || post.description}
+                      </p>
                     )}
-                    {post.category && (
-                      <>
-                        <span>•</span>
-                        <span className="text-blue-600 dark:text-blue-400">{post.category}</span>
-                      </>
+                    {post.series && (
+                      <p className="mt-3 font-mono text-[0.72rem] t-faint">
+                        Series:{" "}
+                        <span className="t-muted">{post.series}</span>
+                      </p>
                     )}
-                  </div>
-                  {post.series && (
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                      Series:{" "}
-                      <span className="text-blue-600 dark:text-blue-400">{post.series}</span>
-                    </div>
-                  )}
-                  {post.tags && post.tags.length > 0 && (
-                    <div className="flex gap-2 mb-3">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-md text-sm inline-flex items-center leading-snug min-h-[1.75rem]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  {post.excerpt ? (
-                    <p className="text-gray-600 dark:text-gray-400">{post.excerpt}</p>
-                  ) : (
-                    post.description && (
-                      <p className="text-gray-600 dark:text-gray-400">{post.description}</p>
-                    )
-                  )}
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="techrun mt-3 text-[0.74rem] t-faint">
+                        {post.tags.map((tag) => (
+                          <span key={tag} className="tech">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
       </main>
-    </div>
+    </>
   );
 }
