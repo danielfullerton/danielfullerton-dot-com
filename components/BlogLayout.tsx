@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BlogPostMetadata } from "../types/blog";
 import { formatDate } from "../utils/formatDate";
 import Navbar from "./Navbar";
+import ReadingProgress from "./ReadingProgress";
 import Seo from "./Seo";
 
 type BlogLayoutProps = {
@@ -27,6 +28,7 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
         dateModified={metadata.lastModified}
         type="article"
       />
+      <ReadingProgress />
       <Navbar />
       <article className="mx-auto max-w-2xl px-6 lg:px-8 pt-12 pb-20">
         <Link
@@ -91,7 +93,7 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
         </header>
 
         {metadata.coverImage && (
-          <div className="mb-10 overflow-hidden rounded-lg border rule">
+          <div data-reveal className="mb-10 overflow-hidden rounded-lg border rule">
             <div
               className="aspect-[16/9] bg-center bg-cover bg-no-repeat"
               style={{ backgroundImage: `url(${metadata.coverImage})` }}

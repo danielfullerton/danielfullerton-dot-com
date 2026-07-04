@@ -10,7 +10,7 @@ export default function Navbar() {
             href="/"
             className="font-display text-xl font-medium t-ink tracking-tight"
           >
-            Daniel&nbsp;Fullerton<span className="t-accent">.</span>
+            Daniel&nbsp;Fullerton<span className="t-accent logo-dot">.</span>
           </Link>
           <nav className="flex items-center gap-5 sm:gap-7">
             <Link

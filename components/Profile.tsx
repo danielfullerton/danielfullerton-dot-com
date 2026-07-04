@@ -16,7 +16,7 @@ export default function Profile() {
 
       <h1 className="masthead t-ink mt-5 reveal d2">
         Daniel
-        <br /> Fullerton<span className="t-accent">.</span>
+        <br /> Fullerton<span className="t-accent accent-dot pop">.</span>
       </h1>
 
       <div className="mt-12 lg:mt-16 grid gap-12 lg:gap-16 lg:grid-cols-[1fr_15rem]">

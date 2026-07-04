@@ -36,7 +36,8 @@ export default function ThemeToggle() {
           match the SSR/no-JS markup and avoid a hydration mismatch. */}
       {mounted && isDark ? (
         <svg
-          className="w-[18px] h-[18px]"
+          key="sun"
+          className="toggle-icon w-[18px] h-[18px]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -49,7 +50,8 @@ export default function ThemeToggle() {
         </svg>
       ) : (
         <svg
-          className="w-[18px] h-[18px]"
+          key="moon"
+          className="toggle-icon w-[18px] h-[18px]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
