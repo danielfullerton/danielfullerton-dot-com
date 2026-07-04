@@ -2,63 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Editorial design system — color tokens
+   Ported from ui-refactor-ideas/optionA.html (:root / .dark).
+   Tailwind darkMode is "class": the .dark class is toggled on
+   <html> by the no-flash script (_document) and the theme toggle.
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --accent: #0070f3;
-  --muted: #666666;
-  --border: #eaeaea;
+  --bg: #f7f7f4;
+  --surface: #ffffff;
+  --ink: #18191b;
+  --muted: #55575d;
+  --faint: #6c6e74;
+  --rule: #e4e4de;
+  --rule-strong: #cfcfc8;
+  --accent: #1e4076;
+  --accent-soft: rgba(30, 64, 118, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #111111;
-    --foreground: #ffffff;
-    --accent: #3291ff;
-    --muted: #888888;
-    --border: #333333;
-  }
+.dark {
+  --bg: #121316;
+  --surface: #17181b;
+  --ink: #ebebe7;
+  --muted: #a3a5aa;
+  --faint: #86888d;
+  --rule: #26282c;
+  --rule-strong: #35373c;
+  --accent: #82a8e6;
+  --accent-soft: rgba(130, 168, 230, 0.14);
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+html {
+  background: var(--bg);
+  color-scheme: light;
 }
-
-.parallax-gradient {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 5s ease infinite;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.parallax-content {
-  position: relative;
-  z-index: 1;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+html.dark {
+  color-scheme: dark;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-inter), system-ui, -apple-system, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-newsreader), Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  text-rendering: optimizeLegibility;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 * {
@@ -67,26 +57,235 @@ body {
   margin: 0;
 }
 
-a {
+/* ------------------------------------------------------------
+   Semantic color helpers driven by the theme variables
+   ------------------------------------------------------------ */
+.t-ink {
+  color: var(--ink);
+}
+.t-muted {
+  color: var(--muted);
+}
+.t-faint {
+  color: var(--faint);
+}
+.t-accent {
   color: var(--accent);
-  text-decoration: none;
-  transition: color 0.2s ease;
+}
+.bg-paper {
+  background: var(--bg);
+}
+.bg-surface {
+  background: var(--surface);
+}
+.rule {
+  border-color: var(--rule);
+}
+.rule-strong {
+  border-color: var(--rule-strong);
+}
+.accent-soft {
+  background: var(--accent-soft);
+}
+.nav-bg {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+}
+.hover-ink:hover {
+  color: var(--ink);
+}
+.hover-accent:hover {
+  color: var(--accent);
+}
+.card-hover:hover {
+  border-color: var(--rule-strong);
 }
 
-a:hover {
-  text-decoration: underline;
+/* ------------------------------------------------------------
+   Type families (wired to next/font CSS variables)
+   ------------------------------------------------------------ */
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+}
+.font-body {
+  font-family: var(--font-newsreader), Georgia, serif;
+}
+.font-mono {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* ------------------------------------------------------------
+   Editorial type treatments
+   ------------------------------------------------------------ */
+.kicker {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.masthead {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  line-height: 0.92;
+  letter-spacing: -0.018em;
+  font-size: clamp(3.1rem, 11vw, 8.2rem);
+}
+
+.section-title {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+}
+
+.measure {
+  max-width: 65ch;
+}
+.measure-wide {
+  max-width: 70ch;
+}
+
+.prose-body {
+  font-size: 1.1875rem;
+  line-height: 1.62;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .prose-body {
+    font-size: 1.0625rem;
   }
 }
 
+/* ------------------------------------------------------------
+   Micro-interactions (calm, not background motion)
+   ------------------------------------------------------------ */
+/* animated link underline */
+.ul-link {
+  position: relative;
+  color: var(--ink);
+  text-decoration: none;
+}
+.ul-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ul-link:hover::after,
+.ul-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* skill tech run — typeset, not pills */
+.techrun {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.techrun .tech {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  white-space: nowrap;
+}
+.techrun .tech:not(:last-child)::after {
+  content: "·";
+  color: var(--rule-strong);
+  padding: 0 0.6em;
+}
+
+/* work / writing rows: an ink tick slides in on hover */
+.entry {
+  position: relative;
+}
+.entry .tick {
+  position: absolute;
+  left: -1.15rem;
+  top: 0.15em;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+@media (min-width: 768px) {
+  .entry:hover .tick,
+  .entry:focus-within .tick {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* focus-visible outlines (accessibility — do not regress) */
+.theme-toggle:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* one calm signature: staggered reveal on load */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  opacity: 0;
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.reveal.d1 {
+  animation-delay: 0.05s;
+}
+.reveal.d2 {
+  animation-delay: 0.16s;
+}
+.reveal.d3 {
+  animation-delay: 0.28s;
+}
+.reveal.d4 {
+  animation-delay: 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none;
+  }
+  .ul-link::after,
+  .entry .tick {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+/* ------------------------------------------------------------
+   Base element defaults
+   ------------------------------------------------------------ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 code {
-  font-family: monospace;
-  background: var(--border);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
   font-size: 0.9em;
 }
