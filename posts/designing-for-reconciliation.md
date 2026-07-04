@@ -5,7 +5,7 @@ date: "2026-06-27"
 lastModified: "2026-06-27"
 author: "Daniel Fullerton"
 language: "en"
-status: "published"
+status: "draft"
 
 # SEO & Social
 description: "In billing and other financial systems, 'mostly correct' is a failing grade. Here's how I design data pipelines around reconciliation as a first-class concern — idempotent replay, dropped-event detection, and comparison at scale — so the numbers always add up by month close."

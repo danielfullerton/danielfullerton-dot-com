@@ -34,21 +34,21 @@ export const work: WorkEntry[] = [
     title: "Livesite, reliability & cost",
     context: "On-call DRI · platform operations",
     summary:
-      "As on-call DRI I owned 169 livesite incidents (8 Sev2) over six months with telemetry-driven root-cause analysis, while cutting recurring cloud spend, reducing CI build time, and shaving reconciliation runtime so month-close validation lands hours earlier for every partner team.",
+      "As the on-call directly-responsible engineer, I'm the person the pager wakes. I run calm, telemetry-driven root-cause analysis on production incidents, hold the line through the highest-stakes week of every month at close, and mentor teammates through their first on-call rotations. Alongside that I cut recurring cloud spend, reduced CI build time, and shaved reconciliation runtime so month-close validation lands hours earlier for every partner team.",
     metrics: [
-      "169 incidents owned",
+      "telemetry-driven RCA",
       "~78% faster CI builds",
       "~$35K/yr cloud cost removed",
     ],
   },
   {
-    title: "Security & compliance",
-    context: "Owner · SFI / SecurePaaS / SOX",
+    title: "SOX ownership, security & compliance",
+    context: "Owner · SOX / SFI / SecurePaaS",
     summary:
-      "Brought ~95 cloud resources into network-security-perimeter compliance across public and sovereign clouds, delivered managed-identity auth uplifts across every production region, and took over ownership of four SOX controls — including a reusable, AI-assisted audit-evidence workflow.",
+      "I own four SOX controls end-to-end for the platform — compiling the annual audit-evidence packages, leading auditor and tester walkthroughs to minimal follow-ups, and authoring a reusable, AI-assisted evidence workflow that makes the process repeatable year over year. On the security side, I brought ~95 cloud resources into network-security-perimeter compliance across public and sovereign clouds and delivered managed-identity auth uplifts across every production region.",
     metrics: [
-      "95 resources → compliant",
       "4 SOX controls owned",
+      "95 resources → compliant",
       "10 production regions",
     ],
   },

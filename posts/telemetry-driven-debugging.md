@@ -5,7 +5,7 @@ date: "2026-07-03"
 lastModified: "2026-07-03"
 author: "Daniel Fullerton"
 language: "en"
-status: "published"
+status: "draft"
 
 # SEO & Social
 description: "After owning 169 livesite incidents in six months, I've converged on a repeatable method for root-causing production problems: start from telemetry, drill to a single entity, separate retries from real failures, and end with a deliberate skeptic's pass. Here's the field guide."
