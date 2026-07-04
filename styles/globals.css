@@ -242,9 +242,12 @@ button:focus-visible {
     transform: translateY(0);
   }
 }
+/* Content defaults to visible; the animation only enhances the entrance.
+   Using fill-mode "both" gives the pre-delay hidden state on browsers that
+   run the animation, while a browser that never plays it still shows the
+   element (opacity:1) instead of leaving the hero permanently blank. */
 .reveal {
-  opacity: 0;
-  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .reveal.d1 {
   animation-delay: 0.05s;
