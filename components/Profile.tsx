@@ -72,13 +72,16 @@ export default function Profile() {
               keeps a financial system trustworthy.
             </p>
             <p className="t-muted">
-              Before Commerce I spent two years in big-data platform
-              engineering — GraphQL data APIs, data governance and lineage, and
-              Spark-based data-quality libraries. Earlier I built retail
-              operations apps at T-Mobile (Java/Spring, Angular) and
+              Before Commerce I spent two years on Microsoft&rsquo;s data
+              platform — GraphQL data APIs, data governance and lineage,
+              Spark-based data-quality libraries, and a security migration that
+              moved hundreds of services off application secrets to managed
+              identity. Earlier I built retail operations apps at T-Mobile
+              (Java/Spring, Angular) and led API architecture for
               talent-management platforms at Randstad (TypeScript, Node.js,
-              Google Cloud). B.S. in Computer Science. I lean heavily on modern
-              AI tooling to move fast without giving up rigor.
+              Google Cloud). B.S. in Computer Science, University of North
+              Georgia. I lean heavily on modern AI tooling to move fast without
+              giving up rigor.
             </p>
           </div>
 
