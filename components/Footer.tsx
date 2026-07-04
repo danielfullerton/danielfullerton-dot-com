@@ -41,12 +41,7 @@ export default function Footer() {
           >
             Daniel&nbsp;Fullerton<span className="t-accent">.</span>
           </Link>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-            <p className="font-mono text-[0.75rem] t-faint leading-relaxed">
-              Set in Fraunces &amp; Newsreader.
-              <br />
-              Built with intention — no template.
-            </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-6">
             <div className="flex items-center gap-5">
               {socials.map((s) => (
                 <Link
