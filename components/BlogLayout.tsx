@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { BlogPostMetadata } from "../types/blog";
 import { formatDate } from "../utils/formatDate";
 import Navbar from "./Navbar";
+import ReadingProgress from "./ReadingProgress";
 import Seo from "./Seo";
 
 type BlogLayoutProps = {
@@ -10,6 +12,24 @@ type BlogLayoutProps = {
 };
 
 export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
+  const proseRef = useRef<HTMLDivElement>(null);
+
+  // Reveal post paragraphs as they scroll into view. Only tag blocks that are
+  // BELOW the fold, so already-visible content is never hidden/flashed. Skipped
+  // entirely under reduced motion. ScrollReveal's observer does the rest.
+  useEffect(() => {
+    const wrap = proseRef.current?.firstElementChild;
+    if (!wrap) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const cutoff = window.innerHeight * 0.9;
+    Array.from(wrap.children).forEach((block) => {
+      if (block.getBoundingClientRect().top > cutoff) {
+        block.setAttribute("data-reveal", "");
+      }
+    });
+    window.dispatchEvent(new Event("reveal:rescan"));
+  }, [children]);
+
   return (
     <>
       <Seo
@@ -27,6 +47,7 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
         dateModified={metadata.lastModified}
         type="article"
       />
+      <ReadingProgress />
       <Navbar />
       <article className="mx-auto max-w-2xl px-6 lg:px-8 pt-12 pb-20">
         <Link
@@ -91,9 +112,9 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
         </header>
 
         {metadata.coverImage && (
-          <div className="mb-10 overflow-hidden rounded-lg border rule">
+          <div data-reveal className="mb-10 overflow-hidden rounded-lg border rule">
             <div
-              className="aspect-[16/9] bg-center bg-cover bg-no-repeat"
+              className="cover-settle aspect-[16/9] bg-center bg-cover bg-no-repeat"
               style={{ backgroundImage: `url(${metadata.coverImage})` }}
               role="img"
               aria-label={metadata.title}
@@ -102,6 +123,7 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
         )}
 
         <div
+          ref={proseRef}
           className="prose prose-lg dark:prose-invert max-w-none font-body
             prose-headings:font-display prose-headings:font-medium prose-headings:tracking-[-0.01em]
             prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline

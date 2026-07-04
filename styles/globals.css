@@ -18,6 +18,8 @@
   --rule-strong: #cfcfc8;
   --accent: #1e4076;
   --accent-soft: rgba(30, 64, 118, 0.1);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-lift: 0 14px 34px -16px rgba(24, 25, 27, 0.28);
 }
 
 .dark {
@@ -30,6 +32,7 @@
   --rule-strong: #35373c;
   --accent: #82a8e6;
   --accent-soft: rgba(130, 168, 230, 0.14);
+  --shadow-lift: 0 16px 38px -18px rgba(0, 0, 0, 0.7);
 }
 
 html {
@@ -201,27 +204,6 @@ body {
   padding: 0 0.6em;
 }
 
-/* work / writing rows: an ink tick slides in on hover */
-.entry {
-  position: relative;
-}
-.entry .tick {
-  position: absolute;
-  left: -1.15rem;
-  top: 0.15em;
-  color: var(--accent);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
-}
-@media (min-width: 768px) {
-  .entry:hover .tick,
-  .entry:focus-within .tick {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* focus-visible outlines (accessibility — do not regress) */
 .theme-toggle:focus-visible,
 a:focus-visible,
@@ -267,8 +249,7 @@ button:focus-visible {
     opacity: 1;
     animation: none;
   }
-  .ul-link::after,
-  .entry .tick {
+  .ul-link::after {
     transition: none;
   }
   html {
@@ -291,4 +272,310 @@ a {
 code {
   font-family: var(--font-plex-mono), ui-monospace, monospace;
   font-size: 0.9em;
+}
+
+/* ============================================================
+   Motion system — scroll-triggered reveals (progressive
+   enhancement). The hidden state is gated behind html.js, set
+   before paint by the inline script in _document. No JS (or a
+   crawler) → content is fully visible. ScrollReveal.tsx adds
+   .in-view via IntersectionObserver; a try/catch failsafe there
+   reveals everything if setup ever fails, so content is never
+   left permanently hidden.
+   ============================================================ */
+
+/* block reveal: the element itself rises + fades in */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(var(--reveal-order, 0) * 80ms);
+  will-change: opacity, transform;
+}
+html.js [data-reveal].in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* group cascade: container triggers, its .stag children stagger in */
+html.js [data-reveal-group] .stag {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  transition-delay: calc(var(--i, 0) * 45ms);
+}
+html.js [data-reveal-group].in-view .stag {
+  opacity: 1;
+  transform: none;
+}
+
+/* an accent hairline that draws itself in when its section reveals */
+.draw-rule {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease) 0.1s;
+}
+[data-reveal].in-view .draw-rule,
+.in-view.draw-rule {
+  transform: scaleX(1);
+}
+
+/* ------------------------------------------------------------
+   Hover micro-interactions (calm, responsive, a little fun)
+   ------------------------------------------------------------ */
+/* tech / metric tokens react to the pointer */
+.techrun .tech {
+  transition: color 0.2s ease, transform 0.2s var(--ease);
+}
+.techrun .tech:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* cards lift off the page */
+.card-hover {
+  transition: border-color 0.25s ease, transform 0.28s var(--ease),
+    box-shadow 0.28s var(--ease);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* arrows that ease forward on hover */
+.arrow-nudge {
+  display: inline-block;
+  transition: transform 0.25s var(--ease);
+}
+.group:hover .arrow-nudge {
+  transform: translateX(4px);
+}
+
+/* ------------------------------------------------------------
+   Accent-dot flourish (masthead + logo)
+   ------------------------------------------------------------ */
+.accent-dot {
+  display: inline-block;
+  transform-origin: center 80%;
+}
+/* one-time pop on load, then a slow, subtle breathing pulse. No fill-mode and
+   a visible resting state, so a browser that skips the animation still shows
+   the dot (never rely on animation for visibility). */
+.accent-dot.pop {
+  animation: dot-pop 0.55s var(--ease),
+    dot-breathe 5s ease-in-out 1.2s infinite;
+}
+@keyframes dot-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes dot-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.16);
+  }
+}
+.logo-dot {
+  display: inline-block;
+  transition: transform 0.3s var(--ease);
+}
+a:hover .logo-dot {
+  transform: scale(1.5);
+}
+
+/* ------------------------------------------------------------
+   Theme toggle — icon swaps with a quick rotate-in
+   ------------------------------------------------------------ */
+.theme-toggle svg {
+  transition: transform 0.4s var(--ease);
+}
+.theme-toggle:hover svg {
+  transform: rotate(18deg);
+}
+.toggle-icon {
+  animation: toggle-in 0.42s var(--ease);
+}
+@keyframes toggle-in {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+/* ------------------------------------------------------------
+   Reading-progress bar (blog posts)
+   ------------------------------------------------------------ */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  z-index: 50;
+  transition: width 0.1s linear;
+  will-change: width;
+}
+
+/* ------------------------------------------------------------
+   Masthead — each line rises from behind a mask on load.
+   Default (no JS) state is fully visible; the hidden offset only
+   applies under html.js, and html.anim-safe (set ~1.6s after load
+   by ScrollReveal) force-reveals it so the name can never be left
+   hidden if the animation doesn't play.
+   ------------------------------------------------------------ */
+.masthead .line-mask {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.04em;
+}
+html.js .masthead .line-inner {
+  display: block;
+  transform: translateY(106%);
+  animation: line-rise 0.9s var(--ease) forwards;
+}
+.masthead .line-inner.l1 {
+  animation-delay: 0.12s;
+}
+.masthead .line-inner.l2 {
+  animation-delay: 0.26s;
+}
+@keyframes line-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+html.anim-safe .masthead .line-inner {
+  transform: none !important;
+  animation: none !important;
+}
+
+/* ------------------------------------------------------------
+   Headshot — perspective tilt toward the pointer + accent ring
+   ------------------------------------------------------------ */
+.headshot-scene {
+  perspective: 700px;
+}
+.headshot-tilt {
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.headshot-scene:hover .headshot-tilt {
+  box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow-lift);
+}
+
+/* ------------------------------------------------------------
+   Smart nav — slides away on scroll-down, returns on scroll-up
+   ------------------------------------------------------------ */
+.nav-shell {
+  transition: transform 0.35s var(--ease);
+  will-change: transform;
+}
+.nav-shell.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* ------------------------------------------------------------
+   Work rows — come alive on hover
+   ------------------------------------------------------------ */
+.work-row {
+  transition: transform 0.28s var(--ease);
+}
+.work-row .work-num {
+  transition: color 0.25s ease, transform 0.28s var(--ease);
+}
+@media (min-width: 768px) {
+  .work-row:hover {
+    transform: translateX(6px);
+  }
+  .work-row:hover .work-num {
+    color: var(--accent);
+    transform: scale(1.35);
+  }
+}
+
+/* ------------------------------------------------------------
+   Route transition — new page content eases in
+   ------------------------------------------------------------ */
+.route-fade {
+  animation: route-in 0.5s var(--ease);
+}
+@keyframes route-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   Blog cover — a slow settle (Ken Burns) on load
+   ------------------------------------------------------------ */
+.cover-settle {
+  animation: cover-settle 1.6s var(--ease);
+}
+@keyframes cover-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* respect reduced motion across the whole motion system */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal],
+  html.js [data-reveal-group] .stag {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .draw-rule {
+    transform: none;
+    transition: none;
+  }
+  .accent-dot.pop {
+    animation: none;
+  }
+  .card-hover:hover,
+  .techrun .tech:hover,
+  .work-row:hover,
+  .work-row:hover .work-num {
+    transform: none;
+  }
+  .reading-progress {
+    transition: none;
+  }
+  html.js .masthead .line-inner {
+    transform: none;
+    animation: none;
+  }
+  .headshot-tilt {
+    transform: none !important;
+  }
+  .route-fade,
+  .cover-settle {
+    animation: none;
+  }
 }

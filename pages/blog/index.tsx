@@ -104,7 +104,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
         </section>
 
         {/* filters */}
-        <section className="py-8 border-b rule">
+        <section className="py-8 border-b rule" data-reveal>
           <div className="flex flex-wrap items-end gap-x-10 gap-y-6">
             {/* Series */}
             {allSeries.length > 0 && (
@@ -217,14 +217,17 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               No posts match these filters.
             </p>
           ) : (
-            <ol>
-              {filteredPosts.map((post) => (
-                <li key={post.slug}>
+            <ol data-reveal-group>
+              {filteredPosts.map((post, i) => (
+                <li
+                  key={post.slug}
+                  className="stag"
+                  style={{ "--i": Math.min(i, 8) } as React.CSSProperties}
+                >
                   <Link
                     href={`/blog/${post.slug}`}
                     className="entry group block py-8 border-b rule"
                   >
-                    <span className="tick font-mono">→</span>
                     <div className="flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-wide t-faint">
                       <span>{formatDate(post.date)}</span>
                       {post.timeToRead && (

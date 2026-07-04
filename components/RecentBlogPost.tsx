@@ -9,14 +9,15 @@ export default function Writing({ posts }: { posts: BlogPostSummary[] }) {
   return (
     <section id="writing" className="py-16 lg:py-24 scroll-mt-20">
       <div className="grid gap-8 lg:gap-16 md:grid-cols-[9rem_1fr] lg:grid-cols-[11rem_1fr]">
-        <div>
+        <div data-reveal>
           <p className="kicker">Writing</p>
           <h2 className="section-title t-ink mt-3">Latest &amp; recent</h2>
+          <span className="draw-rule mt-4 block h-px w-12 bg-[color:var(--accent)]" />
           <Link
             href="/blog"
-            className="mt-4 inline-block font-mono text-[0.8rem] ul-link t-muted"
+            className="group mt-4 inline-block font-mono text-[0.8rem] ul-link t-muted"
           >
-            All posts →
+            All posts <span className="arrow-nudge">→</span>
           </Link>
         </div>
 
@@ -25,7 +26,8 @@ export default function Writing({ posts }: { posts: BlogPostSummary[] }) {
           {latest && (
             <Link
               href={`/blog/${latest.slug}`}
-              className="entry group block bg-surface border rule rounded-lg p-7 lg:p-9 card-hover transition-colors"
+              data-reveal
+              className="entry group block bg-surface border rule rounded-lg p-7 lg:p-9 card-hover"
             >
               <div className="flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-wide t-faint">
                 <span className="t-accent uppercase">Latest</span>
@@ -61,16 +63,15 @@ export default function Writing({ posts }: { posts: BlogPostSummary[] }) {
 
           {/* recent listing */}
           {recent.length > 0 && (
-            <ul className="mt-2">
+            <ul className="mt-2" data-reveal-group>
               {recent.map((post, i) => (
-                <li key={post.slug}>
+                <li key={post.slug} className="stag" style={{ "--i": i } as React.CSSProperties}>
                   <Link
                     href={`/blog/${post.slug}`}
                     className={`entry group py-6 flex items-baseline justify-between gap-5 ${
                       i < recent.length - 1 ? "border-b rule" : ""
                     }`}
                   >
-                    <span className="tick font-mono">→</span>
                     <span className="font-display text-[1.18rem] leading-snug t-ink">
                       {post.title}
                     </span>
