@@ -8,8 +8,12 @@ import { useRouter } from "next/router";
  *
  * Progressive enhancement + safety: the hidden state in CSS is gated behind
  * `html.js`. If IntersectionObserver is missing, the user prefers reduced
- * motion, or setup throws for any reason, we reveal everything immediately —
- * content is never left permanently invisible.
+ * motion, or setup throws for any reason, everything is revealed immediately.
+ * A short timer also stamps `html.anim-safe`, which force-reveals any
+ * animation-gated content (e.g. the masthead) so nothing can stay hidden.
+ *
+ * Other components can dispatch `window` event `reveal:rescan` after adding
+ * new `data-reveal` nodes (e.g. blog post paragraphs) to have them observed.
  */
 export default function ScrollReveal() {
   const router = useRouter();
@@ -23,45 +27,56 @@ export default function ScrollReveal() {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-
-    if (prefersReduced || !("IntersectionObserver" in window)) {
-      revealAll();
-      return;
-    }
+    const noIO = !("IntersectionObserver" in window);
 
     let observer: IntersectionObserver | null = null;
-
-    const observe = () => {
-      const els = document.querySelectorAll(
-        "[data-reveal]:not(.in-view), [data-reveal-group]:not(.in-view)"
-      );
-      els.forEach((el) => observer!.observe(el));
-    };
-
-    try {
-      observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("in-view");
-              observer!.unobserve(entry.target);
+    if (!prefersReduced && !noIO) {
+      try {
+        observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer!.unobserve(entry.target);
+              }
             }
-          }
-        },
-        { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-      );
-      observe();
-    } catch {
-      revealAll();
-      return;
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+        );
+      } catch {
+        observer = null;
+      }
     }
 
-    // Re-scan after client-side navigation so new page content animates in.
-    const onRouteChange = () => window.setTimeout(observe, 60);
+    // Observe pending nodes, or just reveal everything when there's no observer.
+    const scan = () => {
+      if (!observer) {
+        revealAll();
+        return;
+      }
+      document
+        .querySelectorAll(
+          "[data-reveal]:not(.in-view), [data-reveal-group]:not(.in-view)"
+        )
+        .forEach((el) => observer!.observe(el));
+    };
+    scan();
+
+    // Failsafe: guarantee animation-gated content becomes visible shortly.
+    const safeTimer = window.setTimeout(
+      () => document.documentElement.classList.add("anim-safe"),
+      1600
+    );
+
+    const onRescan = () => scan();
+    const onRouteChange = () => window.setTimeout(scan, 60);
+    window.addEventListener("reveal:rescan", onRescan);
     router.events.on("routeChangeComplete", onRouteChange);
 
     return () => {
       observer?.disconnect();
+      window.clearTimeout(safeTimer);
+      window.removeEventListener("reveal:rescan", onRescan);
       router.events.off("routeChangeComplete", onRouteChange);
     };
   }, [router.events]);

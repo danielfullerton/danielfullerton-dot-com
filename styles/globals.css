@@ -455,6 +455,116 @@ a:hover .logo-dot {
   will-change: width;
 }
 
+/* ------------------------------------------------------------
+   Masthead — each line rises from behind a mask on load.
+   Default (no JS) state is fully visible; the hidden offset only
+   applies under html.js, and html.anim-safe (set ~1.6s after load
+   by ScrollReveal) force-reveals it so the name can never be left
+   hidden if the animation doesn't play.
+   ------------------------------------------------------------ */
+.masthead .line-mask {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.04em;
+}
+html.js .masthead .line-inner {
+  display: block;
+  transform: translateY(106%);
+  animation: line-rise 0.9s var(--ease) forwards;
+}
+.masthead .line-inner.l1 {
+  animation-delay: 0.12s;
+}
+.masthead .line-inner.l2 {
+  animation-delay: 0.26s;
+}
+@keyframes line-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+html.anim-safe .masthead .line-inner {
+  transform: none !important;
+  animation: none !important;
+}
+
+/* ------------------------------------------------------------
+   Headshot — perspective tilt toward the pointer + accent ring
+   ------------------------------------------------------------ */
+.headshot-scene {
+  perspective: 700px;
+}
+.headshot-tilt {
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.headshot-scene:hover .headshot-tilt {
+  box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow-lift);
+}
+
+/* ------------------------------------------------------------
+   Smart nav — slides away on scroll-down, returns on scroll-up
+   ------------------------------------------------------------ */
+.nav-shell {
+  transition: transform 0.35s var(--ease);
+  will-change: transform;
+}
+.nav-shell.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* ------------------------------------------------------------
+   Work rows — come alive on hover
+   ------------------------------------------------------------ */
+.work-row {
+  transition: transform 0.28s var(--ease);
+}
+.work-row .work-num {
+  transition: color 0.25s ease, transform 0.28s var(--ease);
+}
+@media (min-width: 768px) {
+  .work-row:hover {
+    transform: translateX(6px);
+  }
+  .work-row:hover .work-num {
+    color: var(--accent);
+    transform: scale(1.35);
+  }
+}
+
+/* ------------------------------------------------------------
+   Route transition — new page content eases in
+   ------------------------------------------------------------ */
+.route-fade {
+  animation: route-in 0.5s var(--ease);
+}
+@keyframes route-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   Blog cover — a slow settle (Ken Burns) on load
+   ------------------------------------------------------------ */
+.cover-settle {
+  animation: cover-settle 1.6s var(--ease);
+}
+@keyframes cover-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 /* respect reduced motion across the whole motion system */
 @media (prefers-reduced-motion: reduce) {
   html.js [data-reveal],
@@ -471,10 +581,23 @@ a:hover .logo-dot {
     animation: none;
   }
   .card-hover:hover,
-  .techrun .tech:hover {
+  .techrun .tech:hover,
+  .work-row:hover,
+  .work-row:hover .work-num {
     transform: none;
   }
   .reading-progress {
     transition: none;
+  }
+  html.js .masthead .line-inner {
+    transform: none;
+    animation: none;
+  }
+  .headshot-tilt {
+    transform: none !important;
+  }
+  .route-fade,
+  .cover-settle {
+    animation: none;
   }
 }

@@ -23,13 +23,13 @@ export default function Work() {
                 }`}
                 style={{ "--i": i } as React.CSSProperties}
               >
-                <div className="flex items-baseline gap-4">
+                <div className="work-row group flex items-baseline gap-4">
                   <span className="tick font-mono">→</span>
-                  <span className="font-mono text-[0.72rem] t-faint shrink-0 pt-1">
+                  <span className="work-num font-mono text-[0.72rem] t-faint shrink-0 pt-1 origin-left">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="font-display text-[1.35rem] sm:text-[1.5rem] leading-tight font-medium t-ink">
+                    <h3 className="font-display text-[1.35rem] sm:text-[1.5rem] leading-tight font-medium t-ink transition-colors group-hover:text-accent">
                       {entry.title}
                     </h3>
                     <p className="mt-1 font-mono text-[0.72rem] tracking-wide uppercase t-accent">
