@@ -24,7 +24,7 @@ keywords:
     "AI optimization",
     "chain of thought",
   ]
-canonicalUrl: "/blog/Chain%20of%20Thought"
+canonicalUrl: "/blog/chain-of-thought"
 noindex: false
 nofollow: false
 
@@ -51,7 +51,7 @@ LLMs are great at quickly generating answers, but how do we make them _think_? O
 
 ## What Is Chain of Thought (CoT) Reasoning?
 
-Chain of Thought reasoning a technique in prompt engineering which instructs the model to break down a problem into smaller steps, effectively showing
+Chain of Thought reasoning is a technique in prompt engineering which instructs the model to break down a problem into smaller steps, effectively showing
 its work. This means that instead of simply jumping to the answer, the model will explain its reasoning process. This makes the model more likely to arrive at the correct conclusion, and in the case that it doesn't, it becomes easier to troubleshoot and identify where the model messed up. This is especially useful in problems which require logical deduction or multi-step reasoning, such as math problems, debugging code, or commonsense reasoning tasks.
 
 For example, consider a simple LLM which is not designed with strong reasoning capabilities. If you ask it "After driving 60 miles at 30 mph, how long did it take?", a smaller or less capable model might respond incorrectly with "1 hour". The reason for this is that the LLM is not necessarily looking for the "correct" answer from a deterministic perspective, but rather it is trying to predict the next word in the sequence based on the training data it has seen. This means that it may not be able to accurately deduce the correct answer without additional context or reasoning.

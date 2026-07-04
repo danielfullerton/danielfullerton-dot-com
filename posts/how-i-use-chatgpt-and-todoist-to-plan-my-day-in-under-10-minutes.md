@@ -9,8 +9,8 @@ status: "published"
 
 # SEO & Social
 
-description: "How I use ChatGPT and Todoist together to plan my day in under 10 minutes—complete with prompt setup, examples, and copy-ready syntax."
-excerpt: "How I use ChatGPT and Todoist together to plan my day in under 10 minutes—complete with prompt setup, examples, and copy-ready syntax."
+description: "How I use ChatGPT and Todoist together to plan my day in under 10 minutes - complete with prompt setup, examples, and copy-ready syntax."
+excerpt: "How I use ChatGPT and Todoist together to plan my day in under 10 minutes - complete with prompt setup, examples, and copy-ready syntax."
 keywords:
   [
     "ChatGPT",
@@ -21,7 +21,7 @@ keywords:
     "AI workflow",
     "prompt engineering",
   ]
-canonicalUrl: "/blog/How%20I%20Use%20ChatGPT%20and%20Todoist%20to%20Plan%20My%20Day%20in%20Under%2010%20Minutes"
+canonicalUrl: "/blog/how-i-use-chatgpt-and-todoist-to-plan-my-day-in-under-10-minutes"
 noindex: false
 nofollow: false
 
@@ -141,7 +141,7 @@ Before Generating Tasks:
 
 Task Rules:
 
-- Tasks must be actionable — something I can actively do.
+- Tasks must be actionable - something I can actively do.
   - Do not include passive tasks like “wait for delivery” or non-task items like “transition time” or “lunch”.
 - Each task must be between 15 minutes and 1 hour.
 - Time estimates should be realistic and practical, considering setup and wrap-up time.

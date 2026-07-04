@@ -24,7 +24,7 @@ keywords:
     "language models",
     "productivity",
   ]
-canonicalUrl: "/blog/Keep%20Your%20AI%20Assistant%20Focused"
+canonicalUrl: "/blog/keep-your-ai-assistant-focused"
 noindex: false
 nofollow: false
 
@@ -51,7 +51,7 @@ tableOfContents: true
 
 One of the most common frustrations when using AI tools like ChatGPT is that the model can sometimes “lose the plot”. You start with a clear request, but over time, the responses become generic, off-topic, or subtly misaligned with what you actually asked for.
 
-Even with a strong opening prompt, long or complex conversations can introduce **drift**. That’s where a simple technique called **Objective Reiteration** can help — a way to keep your interactions focused, consistent, and productive.
+Even with a strong opening prompt, long or complex conversations can introduce **drift**. That’s where a simple technique called **Objective Reiteration** can help - a way to keep your interactions focused, consistent, and productive.
 
 ---
 
@@ -59,9 +59,9 @@ Even with a strong opening prompt, long or complex conversations can introduce *
 
 ![](/drift_image.png)
 
-Language models like ChatGPT operate on a **rolling context window** — they don’t “remember” things the way humans do (unless memory is explicitly enabled or engineered). Instead, they rely on a stream of tokens to infer your goals based on the immediate conversational context.
+Language models like ChatGPT operate on a **rolling context window** - they don’t “remember” things the way humans do (unless memory is explicitly enabled or engineered). Instead, they rely on a stream of tokens to infer your goals based on the immediate conversational context.
 
-As conversations grow longer, the original objective can become diluted — especially when:
+As conversations grow longer, the original objective can become diluted - especially when:
 
 - The task gradually shifts (e.g., you pivot from writing a data ingestion job in Spark to orchestrating it in Synapse),
 - You revisit decisions (e.g., deciding to decouple a streaming pipeline from Kafka halfway through),
@@ -75,12 +75,12 @@ The result? The model might generate responses that _sound_ helpful but subtly i
 
 ![](/objective_reiteration_image.png)
 
-**Objective Reiteration** is a prompt strategy where you ask the model to restate key details — usually the goal — at regular intervals or major transitions. While this often focuses on restating the _objective_, it can be used to **reiterate any critical context** the model needs to stay aligned.
+**Objective Reiteration** is a prompt strategy where you ask the model to restate key details - usually the goal - at regular intervals or major transitions. While this often focuses on restating the _objective_, it can be used to **reiterate any critical context** the model needs to stay aligned.
 
 This helps in two ways:
 
 1. It reinforces your original intent or assumptions.
-2. It gives you a chance to catch misunderstandings early — before they propagate into errors.
+2. It gives you a chance to catch misunderstandings early - before they propagate into errors.
 
 ---
 
@@ -102,16 +102,16 @@ This helps in two ways:
 
 ## Bonus: Reinforcing Other Important Context
 
-While restating the objective is the most common use of this technique, you can apply the same idea to other forms of essential context — especially in longer sessions.
+While restating the objective is the most common use of this technique, you can apply the same idea to other forms of essential context - especially in longer sessions.
 
 Here are a few examples of what you might ask the model to reiterate:
 
 - **Formatting rules**: “Please include the full SQL query in a Markdown block at the end of each response.”
-- **Styling constraints**: “Use only native Node.js modules — no third-party libraries.”
+- **Styling constraints**: “Use only native Node.js modules - no third-party libraries.”
 - **Contextual facts**: “Remember, the user schema includes `user_id`, `email`, and `created_at`, but not `username`.”
 - **Behavioral instructions**: “Stay in the voice of a senior engineering manager reviewing code.”
 
-In practice, these reiterations act like **soft memory** — helping the model "cache" state across a long context window without requiring complex tooling or chaining.
+In practice, these reiterations act like **soft memory** - helping the model "cache" state across a long context window without requiring complex tooling or chaining.
 
 This technique works best when the reinforced information:
 
@@ -137,6 +137,6 @@ If your AI assistant is drifting off-topic mid-conversation, try adding this ins
 
 > After each response, please restate the objective to ensure we’re still aligned.
 
-This simple technique improves alignment, reduces drift, and makes long conversations far more productive — especially when you're building, debugging, or iterating on complex workflows or chains of thought.
+This simple technique improves alignment, reduces drift, and makes long conversations far more productive - especially when you're building, debugging, or iterating on complex workflows or chains of thought.
 
-Try it in your next multi-step AI interaction — and see how much more useful your assistant becomes.
+Try it in your next multi-step AI interaction - and see how much more useful your assistant becomes.

@@ -1,4 +1,12 @@
 {
+  "routes": [
+    { "route": "/blog/2023 Retrospective", "redirect": "/blog/2023-retrospective", "statusCode": 301 },
+    { "route": "/blog/2024 Retrospective", "redirect": "/blog/2024-retrospective", "statusCode": 301 },
+    { "route": "/blog/Chain of Thought", "redirect": "/blog/chain-of-thought", "statusCode": 301 },
+    { "route": "/blog/Effective Prompt Engineering Techniques ROLE", "redirect": "/blog/effective-prompt-engineering-techniques-role", "statusCode": 301 },
+    { "route": "/blog/How I Use ChatGPT and Todoist to Plan My Day in Under 10 Minutes", "redirect": "/blog/how-i-use-chatgpt-and-todoist-to-plan-my-day-in-under-10-minutes", "statusCode": 301 },
+    { "route": "/blog/Keep Your AI Assistant Focused", "redirect": "/blog/keep-your-ai-assistant-focused", "statusCode": 301 }
+  ],
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": ["/images/*", "/*.{png,jpg,gif,svg,ico}", "/*.{css,scss,js}"]

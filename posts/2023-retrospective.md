@@ -20,7 +20,7 @@ keywords:
     "personal growth",
     "software engineering",
   ]
-canonicalUrl: "/blog/2023%20Retrospective"
+canonicalUrl: "/blog/2023-retrospective"
 noindex: false
 nofollow: false
 
@@ -67,7 +67,7 @@ from. I'm having a blast so far, and even 2 years in, it still feels like I've g
 
 In the summer of 2022, shortly after I started at Microsoft, my wife and I decided to adopt a second dog. We found this guy, Rambo, at the same shelter where we got our first dog, Atlas. Rambo has
 been the perfect blend of smart and athletic, but also calm and goofy. He's definitely a very family-oriented dog, and he's been great for us as well as for Atlas. A few weeks after Rambo's arrival,
-we installed a fence around our entire backyard, giving the dogs plenty of space to play—mostly chasing squirrels they never catch—while giving us a short break from their energy indoors!
+we installed a fence around our entire backyard, giving the dogs plenty of space to play - mostly chasing squirrels they never catch - while giving us a short break from their energy indoors!
 
 ## New Beginnings
 
@@ -93,7 +93,7 @@ In the meantime, if you are interested in checking out my YouTube channel, you c
 ## Riley Chase Fullerton: Born July 26, 2023
 
 Okay, I know you might be expecting to see a cute baby picture... but my wife and I prefer to keep our son off the internet 😅. Still, the day he was born was the most important of my life! He arrived healthy, happy,
-and eager to meet the world. Becoming a parent changes everything—free time becomes a rare commodity, expenses multiply, and household chores seem to quadruple. Oh, and sleep?
+and eager to meet the world. Becoming a parent changes everything - free time becomes a rare commodity, expenses multiply, and household chores seem to quadruple. Oh, and sleep?
 That's kind of a thing of the past, at least for the first 3-4 months. But Riley has been such a happy baby, always smiling and interacting with everyone,
 and he's progressed so quickly. In just about 9 months, he's already sitting up, babbling his first words, and trying to crawl. There's
 nothing to compare to the experience of having kids, and we've had an incredible experience with our first one. Thanks for being a great son, Riley!
@@ -104,7 +104,7 @@ We're actually about a third of the way through 2024 already (I know, I'm a bit 
 along with some new projects that are very exciting to work on. So far this year, my versatility and adaptability has really been put to the test at Microsoft, which I absolutely love. For
 the rest of the year, I aim to further broaden my skills and impact both at Microsoft as well as in my personal endeavors, including software development, woodworking, and most importantly, learning to be the best dad I can be.
 
-We also have a lot of house projects, many of which I'm tackling myself, which puts some of my "handyman" skills to the test. The most significant is a complete bathroom renovation—stripping everything back to the framing to start over.
+We also have a lot of house projects, many of which I'm tackling myself, which puts some of my "handyman" skills to the test. The most significant is a complete bathroom renovation - stripping everything back to the framing to start over.
 So far I've installed new subfloor, fixed plumbing, and poured self-leveling underlayment in preparation for a new tub and flooring, and there's a huge amount of work left after that, but it will look great once everything is
 back in order. I may even end up building the vanity myself in the woodshop -- we'll see!
 
