@@ -1,62 +1,94 @@
 import Image from "next/image";
+import SocialLinks from "./SocialLinks";
+
+// Low-res blur placeholder generated from public/profile.jpeg — avoids the
+// gray-disc flash (§13.4) while the real headshot loads under images.unoptimized.
+const HEADSHOT_BLUR =
+  "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAQABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAUG/8QAIxAAAgIBAwMFAAAAAAAAAAAAAQIDBBEABiEFMWESEzJBkf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAECAzH/2gAMAwEAAhEDEQA/AK9hpZ48CWVM8s6HDfuk7fs2GhlhnlklWNgEeT5EEZ51npdw01tpVhkLox9L2CuFB8A9xnHOkdN3JRqXmpWZD7atgWFGVJ+847DzopTTLNah8P/Z";
 
 export default function Profile() {
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-      <div className="md:flex-1">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Daniel Fullerton
-        </h1>
-        <h2 className="text-2xl text-gray-600 dark:text-gray-400 mb-6">Software Engineer</h2>
-        <div className="prose max-w-none text-gray-600 dark:text-gray-400 mb-6">
-          <p className="mb-4">
-            I&apos;m a software engineer at{" "}
-            <a
-              href="https://www.linkedin.com/company/microsoft/posts/?feedView=all"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 inline-flex items-center no-underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Microsoft
-              <svg
-                className="ml-1 w-4 h-4"
-                viewBox="0 0 88 88"
-                xmlns="http://www.w3.org/2000/svg"
+    <section className="pt-16 sm:pt-24 lg:pt-28 pb-16 lg:pb-24 border-b rule">
+      <p className="kicker reveal d1">
+        Software Engineer &nbsp;—&nbsp; Microsoft · Commerce
+      </p>
+
+      <h1 className="masthead t-ink mt-5 reveal d2">
+        Daniel
+        <br /> Fullerton<span className="t-accent">.</span>
+      </h1>
+
+      <div className="mt-12 lg:mt-16 grid gap-12 lg:gap-16 lg:grid-cols-[1fr_15rem]">
+        {/* bio column */}
+        <div className="reveal d3">
+          <div className="prose-body measure space-y-6 font-body">
+            <p>
+              Software engineer at{" "}
+              <a
+                href="https://www.linkedin.com/company/microsoft/posts/?feedView=all"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ul-link t-ink font-medium"
               >
-                <path
-                  d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.026 45.7zm4.326-39.025L87.314 0v41.527l-47.318.376zm47.329 39.349l-.011 41.34-47.318-6.677-.066-34.739z"
-                  fill="#00a4ef"
+                Microsoft
+              </a>{" "}
+              specializing in data engineering and cloud architecture. On the
+              Commerce team, I build scalable solutions for customer invoice
+              aggregation using{" "}
+              <span className="t-ink font-medium">Scala</span>,{" "}
+              <span className="t-ink font-medium">Spark&nbsp;Streaming</span>,
+              and <span className="t-ink font-medium">Azure</span> — pairing
+              traditional software engineering with modern AI tooling for
+              efficient, high-quality code.
+            </p>
+            <p className="t-muted">
+              Previously I built retail operations apps at T-Mobile (Java Spring
+              microservices, Angular) and talent-management platforms at Randstad
+              (TypeScript, Node.js, Google Cloud). B.S. in Computer Science.
+            </p>
+          </div>
+
+          {/* social row */}
+          <div className="mt-9">
+            <SocialLinks />
+          </div>
+        </div>
+
+        {/* right rail: headshot + in-page index */}
+        <aside className="reveal d4 lg:pt-1">
+          <div className="flex lg:flex-col items-center lg:items-start gap-6">
+            <div className="shrink-0">
+              <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden bg-surface border rule-strong">
+                <Image
+                  src="/profile.jpeg"
+                  alt="Daniel Fullerton"
+                  width={128}
+                  height={128}
+                  priority
+                  placeholder="blur"
+                  blurDataURL={HEADSHOT_BLUR}
+                  className="w-full h-full object-cover"
                 />
-              </svg>
-            </a>{" "}
-            specializing in data engineering and cloud architecture. Currently,
-            I work on the Commerce team where I develop scalable solutions for
-            customer invoice aggregation using Scala, Spark Streaming, and Azure
-            technologies. I combine traditional software engineering with modern
-            AI tooling to deliver efficient, high-quality code.
-          </p>
-          <p>
-            My journey includes building retail operations applications at
-            T-Mobile using Java Spring microservices and Angular, and developing
-            talent management platforms at Randstad using TypeScript, Node.js,
-            and Google Cloud Platform. With a Bachelor&apos;s in Computer
-            Science, I bring a solid foundation in software engineering
-            principles and a track record of delivering impactful solutions
-            across different technology stacks.
-          </p>
-        </div>
+              </div>
+            </div>
+            <nav className="w-full">
+              <p className="kicker mb-3">Contents</p>
+              <ul className="space-y-2 font-mono text-[0.82rem]">
+                <li>
+                  <a href="#skills" className="ul-link t-muted">
+                    Stack
+                  </a>
+                </li>
+                <li>
+                  <a href="#writing" className="ul-link t-muted">
+                    Writing
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
       </div>
-      <div className="mb-6 md:mb-0 md:mt-0 md:ml-6 flex-shrink-0 order-first md:order-last">
-        <div className="w-48 h-48 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 mx-auto">
-          <Image
-            src="/profile.jpeg"
-            alt="Dan Fullerton"
-            width={192}
-            height={192}
-            className="object-cover"
-          />
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }

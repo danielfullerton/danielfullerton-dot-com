@@ -3,55 +3,54 @@ import Link from "next/link";
 const socialLinks = [
   {
     href: "https://github.com/danielfullerton",
-    ariaLabel: "GitHub Profile",
+    ariaLabel: "GitHub",
+    fill: true,
     icon: (
-      <path
-        fillRule="evenodd"
-        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-        clipRule="evenodd"
-      />
+      <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.73.08-.73 1.21.09 1.85 1.25 1.85 1.25 1.08 1.85 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.39 1.24-3.23-.13-.3-.54-1.53.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z" />
     ),
   },
   {
     href: "https://www.linkedin.com/in/daniel-frank-fullerton",
-    ariaLabel: "LinkedIn Profile",
+    ariaLabel: "LinkedIn",
+    fill: true,
     icon: (
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
     ),
   },
   {
     href: "mailto:dan.frank.fullerton@gmail.com",
     ariaLabel: "Email",
+    fill: false,
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-      />
+      <>
+        <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
+        <path d="m3 6 9 6 9-6" />
+      </>
     ),
   },
 ];
 
 export default function SocialLinks() {
   return (
-    <div className="mt-8 flex items-center justify-center space-x-6">
-      {socialLinks.map((link, index) => (
+    <div className="flex items-center gap-5">
+      {socialLinks.map((link) => (
         <Link
-          key={index}
+          key={link.ariaLabel}
           href={link.href}
           target={link.href.startsWith("mailto") ? undefined : "_blank"}
           rel={
             link.href.startsWith("mailto") ? undefined : "noopener noreferrer"
           }
-          className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          className="t-muted hover-accent transition-colors"
           aria-label={link.ariaLabel}
         >
           <svg
-            className="h-8 w-8"
-            fill={link.href.startsWith("mailto") ? "none" : "currentColor"}
+            className="w-[22px] h-[22px]"
             viewBox="0 0 24 24"
-            stroke={link.href.startsWith("mailto") ? "currentColor" : undefined}
+            fill={link.fill ? "currentColor" : "none"}
+            stroke={link.fill ? undefined : "currentColor"}
+            strokeWidth={link.fill ? undefined : 1.7}
+            aria-hidden="true"
           >
             {link.icon}
           </svg>

@@ -1,64 +1,90 @@
-import Image from "next/image";
 import Link from "next/link";
 import { BlogPostSummary } from "../types/blog";
+import { formatDate } from "../utils/formatDate";
 
-export default function RecentBlogPost({ post }: { post: BlogPostSummary }) {
+export default function Writing({ posts }: { posts: BlogPostSummary[] }) {
+  const [latest, ...rest] = posts;
+  const recent = rest.slice(0, 4);
+
   return (
-    <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-        Latest Blog Post
-      </h3>
-      <Link
-        href={`/blog/${post.slug}`}
-        className="block hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors p-4 -m-4"
-      >
-        <article className="flex items-start space-x-4">
-          {post.image && (
-            <div className="flex-shrink-0">
-              <div className="relative w-24 h-24 rounded-lg overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
-                  sizes="96px"
-                />
+    <section id="writing" className="py-16 lg:py-24 scroll-mt-20">
+      <div className="grid gap-8 lg:gap-16 md:grid-cols-[9rem_1fr] lg:grid-cols-[11rem_1fr]">
+        <div>
+          <p className="kicker">Writing</p>
+          <h2 className="section-title t-ink mt-3">Latest &amp; recent</h2>
+          <Link
+            href="/blog"
+            className="mt-4 inline-block font-mono text-[0.8rem] ul-link t-muted"
+          >
+            All posts →
+          </Link>
+        </div>
+
+        <div>
+          {/* featured latest */}
+          {latest && (
+            <Link
+              href={`/blog/${latest.slug}`}
+              className="entry group block bg-surface border rule rounded-lg p-7 lg:p-9 card-hover transition-colors"
+            >
+              <div className="flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-wide t-faint">
+                <span className="t-accent uppercase">Latest</span>
+                <span aria-hidden="true">·</span>
+                <span>{formatDate(latest.date)}</span>
+                {latest.timeToRead && (
+                  <>
+                    <span aria-hidden="true">·</span>
+                    <span>{latest.timeToRead}</span>
+                  </>
+                )}
+                {latest.category && (
+                  <>
+                    <span aria-hidden="true">·</span>
+                    <span>{latest.category}</span>
+                  </>
+                )}
               </div>
-            </div>
+              <h3 className="mt-4 font-display text-[1.7rem] sm:text-[2rem] leading-tight font-medium t-ink">
+                {latest.title}
+              </h3>
+              <p className="mt-4 font-body text-[1.05rem] leading-relaxed t-muted measure-wide">
+                {latest.excerpt || latest.description}
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 font-mono text-[0.8rem] t-accent">
+                Read{" "}
+                <span className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            </Link>
           )}
-          <div className="flex-1 min-w-0">
-            <h4 className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              {post.title}
-            </h4>
-            <div className="mt-1 text-sm text-gray-500 dark:text-gray-400 flex items-center">
-              <time>{post.date}</time>
-              {post.timeToRead && (
-                <>
-                  <span className="mx-1">•</span>
-                  <span>{post.timeToRead} read</span>
-                </>
-              )}
-            </div>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-              {post.excerpt || post.description}
-            </p>
-            <span className="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 inline-flex items-center group">
-              Read more
-              <svg
-                className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-0.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-          </div>
-        </article>
-      </Link>
-    </div>
+
+          {/* recent listing */}
+          {recent.length > 0 && (
+            <ul className="mt-2">
+              {recent.map((post, i) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className={`entry group py-6 flex items-baseline justify-between gap-5 ${
+                      i < recent.length - 1 ? "border-b rule" : ""
+                    }`}
+                  >
+                    <span className="tick font-mono">→</span>
+                    <span className="font-display text-[1.18rem] leading-snug t-ink">
+                      {post.title}
+                    </span>
+                    <span className="font-mono text-[0.72rem] t-faint shrink-0 whitespace-nowrap">
+                      {formatDate(post.date)}
+                      {post.timeToRead ? ` · ${post.timeToRead}` : ""}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
