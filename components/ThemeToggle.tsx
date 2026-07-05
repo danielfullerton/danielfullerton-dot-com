@@ -32,7 +32,7 @@ export default function ThemeToggle() {
       aria-label="Switch between light and dark mode"
       className="theme-toggle grid place-items-center w-9 h-9 rounded-full border rule t-muted hover-ink transition-colors"
     >
-      {/* Sun — shown in dark mode. Render moon by default until mounted to
+      {/* Sun - shown in dark mode. Render moon by default until mounted to
           match the SSR/no-JS markup and avoid a hydration mismatch. */}
       {mounted && isDark ? (
         <svg

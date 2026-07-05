@@ -6,7 +6,7 @@ export type WorkEntry = {
 };
 
 // Selected work on the Commerce charge-lifecycle platform. Figures are real but
-// deliberately generalized — no customer names, internal codenames, or IDs.
+// deliberately generalized - no customer names, internal codenames, or IDs.
 export const work: WorkEntry[] = [
   {
     title: "Near-real-time charge reconciliation",
@@ -23,7 +23,7 @@ export const work: WorkEntry[] = [
     title: "Legacy pipeline shutdown & streaming cutover",
     context: "Multi-quarter program",
     summary:
-      "Led the cutover of hundreds of thousands of billing groups off a legacy consumption pipeline onto a new streaming-sourced path — standing up processing and reconciliation infrastructure across regions and running auditable, financially-tiered batch cutovers with disciplined rollback when discrepancies appeared.",
+      "Led the cutover of hundreds of thousands of billing groups off a legacy consumption pipeline onto a new streaming-sourced path - standing up processing and reconciliation infrastructure across regions and running auditable, financially-tiered batch cutovers with disciplined rollback when discrepancies appeared.",
     metrics: [
       "100s of thousands of billing groups",
       "100% accuracy at close",
@@ -45,7 +45,7 @@ export const work: WorkEntry[] = [
     title: "SOX ownership, security & compliance",
     context: "Owner · SOX / Security",
     summary:
-      "I own four SOX controls end-to-end for the platform — compiling the annual audit-evidence packages, leading auditor and tester walkthroughs to minimal follow-ups, and authoring a reusable, AI-assisted evidence workflow that makes the process repeatable year over year. On the security side, I brought ~95 cloud resources into network-security-perimeter compliance across public and sovereign clouds and delivered managed-identity auth uplifts across every production region.",
+      "I own four SOX controls end-to-end for the platform - compiling the annual audit-evidence packages, leading auditor and tester walkthroughs to minimal follow-ups, and authoring a reusable, AI-assisted evidence workflow that makes the process repeatable year over year. On the security side, I brought ~95 cloud resources into network-security-perimeter compliance across public and sovereign clouds and delivered managed-identity auth uplifts across every production region.",
     metrics: [
       "4 SOX controls owned",
       "95 resources → compliant",

@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Fraunces, IBM_Plex_Mono, Newsreader } from "next/font/google";
 
-// Self-hosted via next/font (CSP-safe — no runtime CDN request).
+// Self-hosted via next/font (CSP-safe - no runtime CDN request).
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500", "600"],

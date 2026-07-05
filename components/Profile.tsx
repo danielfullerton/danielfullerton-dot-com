@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import SocialLinks from "./SocialLinks";
 
-// Low-res blur placeholder generated from public/profile.jpeg — avoids the
+// Low-res blur placeholder generated from public/profile.jpeg - avoids the
 // gray-disc flash (§13.4) while the real headshot loads under images.unoptimized.
 const HEADSHOT_BLUR =
   "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAQABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAUG/8QAIxAAAgIBAwMFAAAAAAAAAAAAAQIDBBEABiEFMWESEzJBkf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAECAzH/2gAMAwEAAhEDEQA/AK9hpZ48CWVM8s6HDfuk7fs2GhlhnlklWNgEeT5EEZ51npdw01tpVhkLox9L2CuFB8A9xnHOkdN3JRqXmpWZD7atgWFGVJ+847DzopTTLNah8P/Z";
@@ -29,7 +29,7 @@ export default function Profile() {
   return (
     <section className="pt-16 sm:pt-24 lg:pt-28 pb-16 lg:pb-24 border-b rule">
       <p className="kicker reveal d1">
-        Software Engineer &nbsp;—&nbsp; Microsoft · Commerce
+        Software Engineer &nbsp;-&nbsp; Microsoft · Commerce
       </p>
       <p className="kicker reveal d1 mt-2 t-muted">Atlanta, GA</p>
 
@@ -73,7 +73,7 @@ export default function Profile() {
             </p>
             <p className="t-muted">
               Before Commerce I spent two years on Microsoft&rsquo;s data
-              platform — GraphQL data APIs, data governance and lineage,
+              platform - GraphQL data APIs, data governance and lineage,
               Spark-based data-quality libraries, and a security migration that
               moved hundreds of services off application secrets to managed
               identity. Earlier I built retail operations apps at T-Mobile

@@ -9,7 +9,7 @@ export default function Work() {
           <h2 className="section-title t-ink mt-3">Selected work</h2>
           <span className="draw-rule mt-4 block h-px w-12 bg-[color:var(--accent)]" />
           <p className="mt-4 font-mono text-[0.75rem] leading-relaxed t-faint measure">
-            Figures generalized — no customer names or internal identifiers.
+            Figures generalized - no customer names or internal identifiers.
           </p>
         </div>
 
