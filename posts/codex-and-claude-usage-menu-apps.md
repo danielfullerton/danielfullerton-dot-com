@@ -30,7 +30,7 @@ nofollow: false
 
 image: "/usage-menus-menubar.png"
 coverImage: ""
-openGraphImage: "/claude-usage-menu-dropdown.png"
+openGraphImage: "/usage-menus-og.jpg"
 
 # Content Organization
 
