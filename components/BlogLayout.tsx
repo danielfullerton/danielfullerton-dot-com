@@ -128,6 +128,7 @@ export default function BlogLayout({ children, metadata }: BlogLayoutProps) {
             prose-headings:font-display prose-headings:font-medium prose-headings:tracking-[-0.01em]
             prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline
             prose-code:font-mono prose-code:text-[0.9em]
+            prose-code:before:content-none prose-code:after:content-none
             prose-img:rounded-lg"
         >
           {children}
