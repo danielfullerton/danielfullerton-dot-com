@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
+import Projects from "../components/Projects";
 import Seo from "../components/Seo";
 import Skills from "../components/Skills";
 import Work from "../components/Work";
@@ -33,6 +34,7 @@ export default function Home({ posts }: HomeProps) {
       <main id="top" className="mx-auto max-w-6xl px-6 lg:px-10">
         <Profile />
         <Work />
+        <Projects />
         <Skills />
         {posts.length > 0 && <Writing posts={posts} />}
       </main>

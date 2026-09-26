@@ -122,6 +122,11 @@ export default function Profile() {
                   </a>
                 </li>
                 <li>
+                  <a href="#projects" className="ul-link t-muted">
+                    Projects
+                  </a>
+                </li>
+                <li>
                   <a href="#skills" className="ul-link t-muted">
                     Stack
                   </a>

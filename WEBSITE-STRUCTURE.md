@@ -36,7 +36,8 @@ components/
   Navbar.tsx        # Top nav (logo + Home/Blog, responsive hamburger)
   Profile.tsx       # Home hero: name, title, two bio paragraphs, headshot
   Skills.tsx        # Home: "Technologies & Skills" (3 tiers of pills)
-  Projects.tsx      # Home: "Selected Work" (case studies) — NEWLY ADDED (see §10)
+  Work.tsx          # Home: "Selected work" (Microsoft case studies)
+  Projects.tsx      # Home: "Built end to end" (independent projects, with screenshot + live link)
   RecentBlogPost.tsx# Home: "Latest Blog Post" card
   SocialLinks.tsx   # Home: GitHub / LinkedIn / email icons (centered)
   Footer.tsx        # Global copyright footer
@@ -45,7 +46,8 @@ components/
   GoogleAnalytics.tsx
 data/
   technologies.ts   # Skills content (3 arrays)
-  projects.ts       # Selected Work content (3 case studies) — NEWLY ADDED
+  work.ts           # Selected work content (Microsoft case studies)
+  projects.ts       # Projects content (independent projects)
 posts/*.md          # Blog content (frontmatter + markdown). Filename = URL slug.
 types/blog.ts       # Frontmatter + summary type contracts
 utils/blog.ts       # Reads/parses posts (getAllPosts, getPostBySlug, getAllSlugs, getLatestPost)
@@ -97,7 +99,7 @@ Background: an **animated rainbow gradient** (`.parallax-gradient`, see §9) fil
    - *What I work with daily* → `currentFocus`
    - *Shipped to production* → `productionExperience`
    - *Hands-on experience* → `familiarWith`
-3. **`<Projects/>`** — heading "Selected Work", three case-study cards (title + right-aligned context, summary, arrow-bulleted impact points, tech pills). Content from `data/projects.ts`. **Newly added; see §10 & §13.**
+3. **`<Work/>`** and **`<Projects/>`** — rendered in that order directly after `<Profile/>`. `Work` ("Selected work") lists numbered Microsoft case studies from `data/work.ts`. `Projects` ("Built end to end", anchor `#projects`, linked from the navbar at `sm` and up) lists independent projects from `data/projects.ts`: title, context, a linked screenshot of the live site, summary, metrics, stack, and a "Visit" link. See §10.
 4. **`<RecentBlogPost/>`** — heading "Latest Blog Post", a single card for the newest non-draft post (from `getLatestPost()`): thumbnail, title, date • read time, excerpt, "Read more →".
 5. **`<SocialLinks/>`** — centered row of GitHub / LinkedIn / email icon links.
 
@@ -141,7 +143,8 @@ Note: three page types use **three different content widths** (`max-w-7xl` home,
 | `Navbar` | all | Top nav + mobile menu | hardcoded links |
 | `Profile` | home | Hero: name, title, bio, headshot | hardcoded JSX |
 | `Skills` | home | 3 tiers of tech pills | `data/technologies.ts` |
-| `Projects` | home | "Selected Work" case studies | `data/projects.ts` |
+| `Work` | home | "Selected work" case studies | `data/work.ts` |
+| `Projects` | home | Independent projects with live links | `data/projects.ts` |
 | `RecentBlogPost` | home | Latest post card | `getLatestPost()` |
 | `SocialLinks` | home | GitHub/LinkedIn/email icons | hardcoded array |
 | `Footer` | all (via `_app`) | Copyright line | `new Date()` |
@@ -180,8 +183,11 @@ Note: three page types use **three different content widths** (`max-w-7xl` home,
 ### Skills (`data/technologies.ts`)
 Three string arrays: `currentFocus`, `productionExperience`, `familiarWith`. Rendered by `Skills.tsx`.
 
-### Projects (`data/projects.ts`) — NEWLY ADDED
-`Project[]` with `{ title, context, summary, impact[], tech[] }`. Three Microsoft case studies (streaming invoice pipeline, data-quality/security hardening, CI/CD build-time reduction). **Status:** added to the working tree and build-verified, but **not yet committed/deployed**, and the specific internal metrics (e.g. dollar savings) are **pending the owner's sign-off** before going public. Treat the copy as provisional.
+### Work (`data/work.ts`)
+`WorkEntry[]` with `{ title, context, summary, metrics[] }`. Microsoft case studies; figures are generalized, with no customer names or internal identifiers.
+
+### Projects (`data/projects.ts`)
+`Project[]` with `{ title, context, summary, metrics[], stack[], href, linkLabel, image, imageAlt }`. Independent work shown with a live link. Currently one entry: Lean Site Services (leansiteservices.com), with its screenshot at `public/lss-homepage.jpg`. Metrics come from the Lean Site Services repo's own records; re-check them there when updating the copy.
 
 ---
 

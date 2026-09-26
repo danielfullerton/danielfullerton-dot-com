@@ -48,6 +48,12 @@ export default function Navbar() {
               Home
             </Link>
             <Link
+              href="/#projects"
+              className="hidden sm:inline font-mono text-[0.8rem] tracking-wide ul-link"
+            >
+              Projects
+            </Link>
+            <Link
               href="/blog"
               className="font-mono text-[0.8rem] tracking-wide ul-link"
             >
