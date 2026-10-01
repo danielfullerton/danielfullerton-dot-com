@@ -46,7 +46,7 @@ tableOfContents: false
 
 # Thinking About AI Workflows Like Data Pipelines
 
-I was learning about RAG recently, and it got me thinking about something bigger than retrieval. In a typical RAG workflow, a search finds material before the model answers, and the selected passages get added to its context. The model still reads those passages. It just doesn't have to carry everything the search looked through.
+I was learning about RAG (retrieval-augmented generation) recently, and it got me thinking about something bigger than retrieval. In a typical RAG workflow, a search finds material before the model answers, and the selected passages get added to its context. The model still reads those passages. It just doesn't have to carry everything the search looked through.
 
 That made me wonder how much of a complex AI task really needs to happen in one conversation. Finding information, checking it, and making a decision are different kinds of work. Why put every raw result in front of the model that's supposed to make the final call?
 
