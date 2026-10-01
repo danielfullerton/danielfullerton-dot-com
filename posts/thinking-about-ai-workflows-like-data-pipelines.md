@@ -21,7 +21,7 @@ keywords:
     "AI agents",
     "orchestration",
   ]
-canonicalUrl: "/blog/from-rag-to-data-pipelines"
+canonicalUrl: "/blog/thinking-about-ai-workflows-like-data-pipelines"
 noindex: false
 nofollow: false
 

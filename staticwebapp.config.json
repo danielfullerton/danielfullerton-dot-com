@@ -5,7 +5,8 @@
     { "route": "/blog/Chain of Thought", "redirect": "/blog/chain-of-thought", "statusCode": 301 },
     { "route": "/blog/Effective Prompt Engineering Techniques ROLE", "redirect": "/blog/effective-prompt-engineering-techniques-role", "statusCode": 301 },
     { "route": "/blog/How I Use ChatGPT and Todoist to Plan My Day in Under 10 Minutes", "redirect": "/blog/how-i-use-chatgpt-and-todoist-to-plan-my-day-in-under-10-minutes", "statusCode": 301 },
-    { "route": "/blog/Keep Your AI Assistant Focused", "redirect": "/blog/keep-your-ai-assistant-focused", "statusCode": 301 }
+    { "route": "/blog/Keep Your AI Assistant Focused", "redirect": "/blog/keep-your-ai-assistant-focused", "statusCode": 301 },
+    { "route": "/blog/from-rag-to-data-pipelines", "redirect": "/blog/thinking-about-ai-workflows-like-data-pipelines", "statusCode": 301 }
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
