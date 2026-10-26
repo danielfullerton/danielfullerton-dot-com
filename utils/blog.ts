@@ -32,7 +32,8 @@ export function getAllPosts(): BlogPostSummary[] {
         timeToRead: data.timeToRead,
         image: data.image,
       }))
-
+    // getStaticProps can't serialize `undefined`; JSON round-trip drops those keys.
+    .map((post) => JSON.parse(JSON.stringify(post)) as BlogPostSummary)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -77,7 +78,8 @@ export function getPostBySlug(slug: string): {
     tableOfContents: data.tableOfContents || false,
   };
 
-  return { content, metadata };
+  // The layout already renders the title as an <h1>, so drop a leading one from the body.
+  return { content: content.replace(/^\s*# .*\n+/, ""), metadata };
 }
 
 export function getAllSlugs(): string[] {
